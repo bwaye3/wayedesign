@@ -739,7 +739,7 @@ $settings['entity_update_batch_size'] = 50;
  * well as the original entity type and field storage definitions should be
  * retained after a successful entity update process.
  */
-$settings['entity_update_backup'] = TRUE;
+$settings['entity_update_backup'] = FALSE;
 
 /**
  * Load local development override configuration, if available.
@@ -759,11 +759,15 @@ $databases['default']['default'] = array (
   'database' => 'wayedesigngroup_619',
   'username' => 'wayedesigngroup_619',
   'password' => 'IJY67.7-Sp',
-  'prefix' => 'drcb_',
+  'prefix' => '',
   'host' => 'localhost',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
+
 $settings['config_sync_directory'] = 'sites/default/files/config_kBfoC73ef-rQOn2wQJKnWrRi9SGIYtVyU7SFCJZMkiadrWsVO_5bNy_xkxryjlpLQ92o63aoVg/sync';
 
+$settings['trusted_host_patterns'] = [
+  '^www\.wayedesigngroup\.com$',
+];
