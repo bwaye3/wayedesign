@@ -266,7 +266,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '_J6weTYcFBRT4p4twvDazDKh8IR4kRytSnPU3UxaMWDkKwltiQ6USCA0ZVGxcBVYlXJ1Te1IJg';
+$settings['hash_salt'] = 'MiKdu0PlOJEO4TeX52lDMcI4HTDMCjLsz9QH80_8q9VTst0O1JZ9MmW8MSIS9U-MHHV4qQqqYA';
 
 /**
  * Deployment identifier.
@@ -289,7 +289,7 @@ $settings['hash_salt'] = '_J6weTYcFBRT4p4twvDazDKh8IR4kRytSnPU3UxaMWDkKwltiQ6USC
  * After finishing the upgrade, be sure to open this file again and change the
  * TRUE back to a FALSE!
  */
-$settings['update_free_access'] = FALSE;
+$settings['update_free_access'] = TRUE;
 
 /**
  * External access proxy settings:
@@ -645,7 +645,7 @@ if ($settings['hash_salt']) {
  */
 # $config['system.performance']['fast_404']['exclude_paths'] = '/\/(?:styles)|(?:system\/files)\//';
 # $config['system.performance']['fast_404']['paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
-# $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
+# $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
 /**
  * Load services definition file.
@@ -756,13 +756,14 @@ $settings['entity_update_backup'] = TRUE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'newwdg',
-  'username' => 'root',
-  'password' => 'root',
-  'prefix' => '',
+  'database' => 'wayedesigngroup_619',
+  'username' => 'wayedesigngroup_619',
+  'password' => 'IJY67.7-Sp',
+  'prefix' => 'drcb_',
   'host' => 'localhost',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
-$settings['config_sync_directory'] = 'sites/default/files/config_cGj5O-j5R87mSPQ5jWaHwUYjj2cij1_cV5aE3r7OqfhMjZWZJ4dSYqP6qVWo-1xOl5ZBl2whaQ/sync';
+$settings['config_sync_directory'] = 'sites/default/files/config_kBfoC73ef-rQOn2wQJKnWrRi9SGIYtVyU7SFCJZMkiadrWsVO_5bNy_xkxryjlpLQ92o63aoVg/sync';
+
