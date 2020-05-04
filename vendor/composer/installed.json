@@ -2631,6 +2631,64 @@
         }
     },
     {
+        "name": "drupal/contribute",
+        "version": "5.0.0-beta3",
+        "version_normalized": "5.0.0.0-beta3",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/contribute.git",
+            "reference": "8.x-5.0-beta3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/contribute-8.x-5.0-beta3.zip",
+            "reference": "8.x-5.0-beta3",
+            "shasum": "8ee067c4b9472b51af90b9481e4302527080129c"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "drupal": {
+                "version": "8.x-5.0-beta3",
+                "datestamp": "1515761285",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "adriancid",
+                "homepage": "https://www.drupal.org/user/1962106"
+            },
+            {
+                "name": "develCuy",
+                "homepage": "https://www.drupal.org/user/125473"
+            },
+            {
+                "name": "jrockowitz",
+                "homepage": "https://www.drupal.org/user/371407"
+            }
+        ],
+        "description": "Provides status report message which encourage users or organizations to join the Drupal community, become a member of Drupal Association, and contribute back to Drupal.",
+        "homepage": "https://www.drupal.org/project/contribute",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/contribute",
+            "issues": "https://www.drupal.org/project/issues/contribute"
+        }
+    },
+    {
         "name": "drupal/core",
         "version": "8.8.5",
         "version_normalized": "8.8.5.0",
@@ -4739,6 +4797,71 @@
         "support": {
             "source": "http://cgit.drupalcode.org/tvi",
             "issues": "http://drupal.org/project/issues/tvi"
+        }
+    },
+    {
+        "name": "drupal/twitter_block",
+        "version": "2.1.0",
+        "version_normalized": "2.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/twitter_block.git",
+            "reference": "8.x-2.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/twitter_block-8.x-2.1.zip",
+            "reference": "8.x-2.1",
+            "shasum": "374eff45b257ca112177b38ef040fd2d920c5d16"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.1",
+                "datestamp": "1463644739",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Devin Carlson",
+                "homepage": "https://www.drupal.org/user/290182"
+            },
+            {
+                "name": "ZenDoodles",
+                "homepage": "https://www.drupal.org/user/226976"
+            },
+            {
+                "name": "cweagans",
+                "homepage": "https://www.drupal.org/user/404732"
+            },
+            {
+                "name": "naveenvalecha",
+                "homepage": "https://www.drupal.org/user/2665733"
+            },
+            {
+                "name": "subhojit777",
+                "homepage": "https://www.drupal.org/user/1812492"
+            }
+        ],
+        "description": "Provides configurable blocks for a Twitter feed.",
+        "homepage": "http://drupal.org/project/twitter_block",
+        "support": {
+            "source": "https://git.drupalcode.org/project/twitter_block"
         }
     },
     {
