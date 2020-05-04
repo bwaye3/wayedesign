@@ -3,8 +3,16 @@
   display: none;
 }
 
-.footer .footer-center {
-  display: none;
+.btn-primary {
+  color: #000 !important;
+  background-color: #ecc311;
+  border-color: #ecc311;
+}
+
+.btn-primary:hover {
+  color: #fff !important;
+  background-color: #000 !important;
+  border-color: #000 !important;
 }
 
 @media (min-width: 768px) and (min-width: 992px) {

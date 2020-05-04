@@ -3558,29 +3558,26 @@
         },
         {
             "name": "drupal/field_formatter_class",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_formatter_class.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_formatter_class-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "f3309becad3bbaacc576c3a70e78784f008ff970"
+                "url": "https://ftp.drupal.org/files/projects/field_formatter_class-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "019c6565f5653dcd424497e2af1f2b425147bb67"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1522603684",
+                    "version": "8.x-1.2",
+                    "datestamp": "1588625241",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
