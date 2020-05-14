@@ -15,6 +15,12 @@
   border-color: #000 !important;
 }
 
+#search-block-form input.form-submit {
+  line-height: 0;
+  color: #000;
+  height: 35px;
+}
+
 @media (min-width: 768px) and (min-width: 992px) {
   .navigation .gva_menu .sub-menu li:hover > ul {
     -webkit-transform: rotateX(0);
