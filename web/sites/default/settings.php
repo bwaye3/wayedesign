@@ -756,8 +756,8 @@ $settings['entity_update_backup'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array(
-  'database' => 'wayedesigngroup_619',
-  'username' => 'wayedesigngroup_root',
+  'database' => 'wayedesigngroup_prod',
+  'username' => 'wayedesigngroup_bradwaye',
   'password' => '!eG13zz63$$$',
   'prefix' => '',
   'host' => 'localhost',
@@ -776,7 +776,4 @@ $databases['default']['default'] = array(
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-  include $app_root . '/' . $site_path . '/settings.local.php';
-}
+
