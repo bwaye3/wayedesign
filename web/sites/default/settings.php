@@ -744,7 +744,7 @@ $settings['entity_update_backup'] = FALSE;
 
 $databases['default']['default'] = array(
   'database' => 'wayedesigngroup_prod',
-  'username' => 'wayedesigngroup_bradwaye',
+  'username' => 'wayedesigngroup_root',
   'password' => '!eG13zz63$$$',
   'prefix' => '',
   'host' => 'localhost',
