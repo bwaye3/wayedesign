@@ -26,7 +26,6 @@
         "drupal/commerce_paypal": "^1.0@beta",
         "drupal/config_update": "^1.7",
         "drupal/contact_block": "^1.5",
-        "drupal/contribute": "^5.0@beta",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
