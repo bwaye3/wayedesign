@@ -266,7 +266,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'xN6nTrUkk943d5ll-tqCB3-nN4yjwwJppQ5SAYEDI6a8D--j324W24es9ygPhWEp-rckD9e-UQ';
+$settings['hash_salt'] = 'MiKdu0PlOJEffrterqggee555O4TeX52lDMcI4HTDMCjLsz9QH80_8q9VTst0O1JZ9MmW8MSIS9U-MHHV4qQqqYA';
 
 /**
  * Deployment identifier.
@@ -289,7 +289,7 @@ $settings['hash_salt'] = 'xN6nTrUkk943d5ll-tqCB3-nN4yjwwJppQ5SAYEDI6a8D--j324W24
  * After finishing the upgrade, be sure to open this file again and change the
  * TRUE back to a FALSE!
  */
-$settings['update_free_access'] = TRUE;
+$settings['update_free_access'] = FALSE;
 
 /**
  * External access proxy settings:
@@ -520,7 +520,8 @@ if ($settings['hash_salt']) {
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-$settings['file_private_path'] = '/sites/default/files/private';
+
+$settings['file_private_path'] = 'sites/default/files/private';
 
 /**
  * Temporary file path:
@@ -533,7 +534,8 @@ $settings['file_private_path'] = '/sites/default/files/private';
  *
  * @see \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory()
  */
-$settings['file_temp_path'] = '/tmp';
+
+$settings["file_temp_path"] = "sites/default/files/tmp";
 
 /**
  * Session write interval:
@@ -645,12 +647,12 @@ $settings['file_temp_path'] = '/tmp';
  */
 # $config['system.performance']['fast_404']['exclude_paths'] = '/\/(?:styles)|(?:system\/files)\//';
 # $config['system.performance']['fast_404']['paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
-# $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
+# $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
 /**
  * Load services definition file.
  */
-$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/default/services.yml';
+# $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 
 /**
  * Override the default service container class.
@@ -739,7 +741,7 @@ $settings['entity_update_batch_size'] = 50;
  * well as the original entity type and field storage definitions should be
  * retained after a successful entity update process.
  */
-$settings['entity_update_backup'] = FALSE;
+$settings['entity_update_backup'] = TRUE;
 
 
 $databases['default']['default'] = array(
@@ -753,7 +755,7 @@ $databases['default']['default'] = array(
   'driver' => 'mysql',
 );
 
-$settings['config_sync_directory'] = 'sites/default/files/config_MFmKIXnLPgIC7yDATMT-NCAJ7ugTQEAIoSL3zPSneBuoDyjWFENG9kMFAhq72UzI87EzGrEUzg/sync';
+$settings['config_sync_directory'] = '../config/sync';
 
 /**
  * Load local development override configuration, if available.
@@ -766,6 +768,7 @@ $settings['config_sync_directory'] = 'sites/default/files/config_MFmKIXnLPgIC7yD
  * Keep this code block at the end of this file to take full effect.
  */
 
- if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-   include $app_root . '/' . $site_path . '/settings.local.php';
- }
+$settings['trusted_host_patterns'] = [
+  '^wayedesigngroup\.com$',
+  '^www\.wayedesigngroup\.com$',
+];
