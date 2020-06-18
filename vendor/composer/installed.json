@@ -2650,17 +2650,17 @@
     },
     {
         "name": "drupal/core",
-        "version": "8.9.0",
-        "version_normalized": "8.9.0.0",
+        "version": "8.9.1",
+        "version_normalized": "8.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core.git",
-            "reference": "f90882ab0723becda2333e4d33e1a6ab27cb8f0c"
+            "reference": "e8ee964c562870381876e85d3f5eaaf8c8ecc9ee"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core/zipball/f90882ab0723becda2333e4d33e1a6ab27cb8f0c",
-            "reference": "f90882ab0723becda2333e4d33e1a6ab27cb8f0c",
+            "url": "https://api.github.com/repos/drupal/core/zipball/e8ee964c562870381876e85d3f5eaaf8c8ecc9ee",
+            "reference": "e8ee964c562870381876e85d3f5eaaf8c8ecc9ee",
             "shasum": ""
         },
         "require": {
@@ -2827,7 +2827,7 @@
             "drupal/workflows": "self.version",
             "drupal/workspaces": "self.version"
         },
-        "time": "2020-06-03T16:44:36+00:00",
+        "time": "2020-06-17T17:57:48+00:00",
         "type": "drupal-core",
         "extra": {
             "drupal-scaffold": {
@@ -2883,8 +2883,8 @@
     },
     {
         "name": "drupal/core-composer-scaffold",
-        "version": "8.9.0",
-        "version_normalized": "8.9.0.0",
+        "version": "8.9.1",
+        "version_normalized": "8.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2932,8 +2932,8 @@
     },
     {
         "name": "drupal/core-project-message",
-        "version": "8.9.0",
-        "version_normalized": "8.9.0.0",
+        "version": "8.9.1",
+        "version_normalized": "8.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-project-message.git",
@@ -2972,17 +2972,17 @@
     },
     {
         "name": "drupal/core-recommended",
-        "version": "8.9.0",
-        "version_normalized": "8.9.0.0",
+        "version": "8.9.1",
+        "version_normalized": "8.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-recommended.git",
-            "reference": "1b87cf5dea633a66a1c4f22d635bc92c127071d9"
+            "reference": "41042f9eaa35b027e6b2c42fa03edcb85da54a06"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core-recommended/zipball/1b87cf5dea633a66a1c4f22d635bc92c127071d9",
-            "reference": "1b87cf5dea633a66a1c4f22d635bc92c127071d9",
+            "url": "https://api.github.com/repos/drupal/core-recommended/zipball/41042f9eaa35b027e6b2c42fa03edcb85da54a06",
+            "reference": "41042f9eaa35b027e6b2c42fa03edcb85da54a06",
             "shasum": ""
         },
         "require": {
@@ -2994,7 +2994,7 @@
             "doctrine/common": "v2.7.3",
             "doctrine/inflector": "v1.2.0",
             "doctrine/lexer": "1.0.2",
-            "drupal/core": "8.9.0",
+            "drupal/core": "8.9.1",
             "easyrdf/easyrdf": "0.9.1",
             "egulias/email-validator": "2.1.17",
             "guzzlehttp/guzzle": "6.5.4",
@@ -3045,7 +3045,7 @@
         "conflict": {
             "webflo/drupal-core-strict": "*"
         },
-        "time": "2020-06-03T16:44:36+00:00",
+        "time": "2020-06-17T17:57:48+00:00",
         "type": "metapackage",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -3624,18 +3624,18 @@
     },
     {
         "name": "drupal/field_formatter_class",
-        "version": "1.3.0",
-        "version_normalized": "1.3.0.0",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/field_formatter_class.git",
-            "reference": "8.x-1.3"
+            "reference": "8.x-1.4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/field_formatter_class-8.x-1.3.zip",
-            "reference": "8.x-1.3",
-            "shasum": "aacb67f98a8307fc2810e29a7a7aa279493b6c7c"
+            "url": "https://ftp.drupal.org/files/projects/field_formatter_class-8.x-1.4.zip",
+            "reference": "8.x-1.4",
+            "shasum": "158a1151c37e6aed76702528269fe4a53378de8e"
         },
         "require": {
             "drupal/core": "^8 || ^9"
@@ -3643,8 +3643,8 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-1.3",
-                "datestamp": "1588733360",
+                "version": "8.x-1.4",
+                "datestamp": "1592471596",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -4493,18 +4493,18 @@
     },
     {
         "name": "drupal/simplenews",
-        "version": "2.0.0-beta1",
-        "version_normalized": "2.0.0.0-beta1",
+        "version": "2.0.0-beta2",
+        "version_normalized": "2.0.0.0-beta2",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/simplenews.git",
-            "reference": "8.x-2.0-beta1"
+            "reference": "8.x-2.0-beta2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/simplenews-8.x-2.0-beta1.zip",
-            "reference": "8.x-2.0-beta1",
-            "shasum": "9c4587b32e99bf885590c54f53ab1a4aa70b92bb"
+            "url": "https://ftp.drupal.org/files/projects/simplenews-8.x-2.0-beta2.zip",
+            "reference": "8.x-2.0-beta2",
+            "shasum": "e33699acad01501ff6a8fc474a53e7ca45244f83"
         },
         "require": {
             "drupal/core": "^8.8 || ^9"
@@ -4515,8 +4515,8 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-2.0-beta1",
-                "datestamp": "1580749447",
+                "version": "8.x-2.0-beta2",
+                "datestamp": "1592298547",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -7403,8 +7403,8 @@
     },
     {
         "name": "symfony/filesystem",
-        "version": "v4.4.9",
-        "version_normalized": "4.4.9.0",
+        "version": "v4.4.10",
+        "version_normalized": "4.4.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/filesystem.git",
@@ -7469,8 +7469,8 @@
     },
     {
         "name": "symfony/finder",
-        "version": "v4.4.9",
-        "version_normalized": "4.4.9.0",
+        "version": "v4.4.10",
+        "version_normalized": "4.4.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/finder.git",
@@ -8881,8 +8881,8 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v4.4.9",
-        "version_normalized": "4.4.9.0",
+        "version": "v4.4.10",
+        "version_normalized": "4.4.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
@@ -9209,17 +9209,17 @@
     },
     {
         "name": "webmozart/assert",
-        "version": "1.8.0",
-        "version_normalized": "1.8.0.0",
+        "version": "1.9.0",
+        "version_normalized": "1.9.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/webmozart/assert.git",
-            "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
+            "reference": "9dc4f203e36f2b486149058bade43c851dd97451"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/webmozart/assert/zipball/ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
-            "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+            "url": "https://api.github.com/repos/webmozart/assert/zipball/9dc4f203e36f2b486149058bade43c851dd97451",
+            "reference": "9dc4f203e36f2b486149058bade43c851dd97451",
             "shasum": ""
         },
         "require": {
@@ -9227,12 +9227,13 @@
             "symfony/polyfill-ctype": "^1.8"
         },
         "conflict": {
+            "phpstan/phpstan": "<0.12.20",
             "vimeo/psalm": "<3.9.1"
         },
         "require-dev": {
             "phpunit/phpunit": "^4.8.36 || ^7.5.13"
         },
-        "time": "2020-04-18T12:12:48+00:00",
+        "time": "2020-06-16T10:16:42+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

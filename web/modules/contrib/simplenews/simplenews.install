@@ -8,6 +8,7 @@
 use Drupal\Core\Database\Database;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\simplenews\Entity\Newsletter;
 
 /**
@@ -107,7 +108,7 @@ function simplenews_install() {
   $site_mail = \Drupal::config('system.site')->get('mail');
   $site_name = \Drupal::config('system.site')->get('name');
 
-  $config = $config = \Drupal::configFactory()->getEditable('simplenews.settings');
+  $config = \Drupal::configFactory()->getEditable('simplenews.settings');
   if (empty($site_mail)) {
     $site_mail = ini_get('sendmail_from');
   }
@@ -119,8 +120,8 @@ function simplenews_install() {
   $config->set('newsletter.from_name', $site_name);
   $config->save(TRUE);
 
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, ['subscribe to newsletters']);
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, ['subscribe to newsletters']);
+  user_role_grant_permissions(AccountInterface::ANONYMOUS_ROLE, ['subscribe to newsletters']);
+  user_role_grant_permissions(AccountInterface::AUTHENTICATED_ROLE, ['subscribe to newsletters']);
 
   // Init the default newsletter.
   $newsletter = Newsletter::load('default');
@@ -256,4 +257,13 @@ function simplenews_update_8205() {
 function simplenews_update_8206() {
   $schema = Database::getConnection()->schema();
   $schema->dropField('simplenews_mail_spool', 'error');
+}
+
+/**
+ * Initialize tidy unconfirmed subscribers setting.
+ */
+function simplenews_update_8207() {
+  $config = \Drupal::configFactory()->getEditable('simplenews.settings');
+  $config->set('subscription.tidy_unconfirmed', 0);
+  $config->save();
 }

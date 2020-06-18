@@ -745,9 +745,9 @@ $settings['entity_update_backup'] = TRUE;
 
 
 $databases['default']['default'] = array(
-  'database' => 'wayedesigngroup_prod',
-  'username' => 'wayedesigngroup_root',
-  'password' => '!eG13zz63$$$',
+  'database' => 'waye',
+  'username' => 'root',
+  'password' => 'root',
   'prefix' => '',
   'host' => 'localhost',
   'port' => '3306',
@@ -767,8 +767,3 @@ $settings['config_sync_directory'] = '../config/sync';
  *
  * Keep this code block at the end of this file to take full effect.
  */
-
-$settings['trusted_host_patterns'] = [
-  '^wayedesigngroup\.com$',
-  '^www\.wayedesigngroup\.com$',
-];
