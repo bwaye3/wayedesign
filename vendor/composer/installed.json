@@ -1779,18 +1779,18 @@
     },
     {
         "name": "drupal/admin_toolbar",
-        "version": "2.2.0",
-        "version_normalized": "2.2.0.0",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/admin_toolbar.git",
-            "reference": "8.x-2.2"
+            "reference": "8.x-2.3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/admin_toolbar-8.x-2.2.zip",
-            "reference": "8.x-2.2",
-            "shasum": "41ea0e3321e6d1e190c486be49a99e60446d8dd7"
+            "url": "https://ftp.drupal.org/files/projects/admin_toolbar-8.x-2.3.zip",
+            "reference": "8.x-2.3",
+            "shasum": "cf8ee1aa8adfc604db4394655e3ba4c423d5f24a"
         },
         "require": {
             "drupal/core": "^8.8.0 || ^9.0"
@@ -1798,8 +1798,8 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-2.2",
-                "datestamp": "1585017179",
+                "version": "8.x-2.3",
+                "datestamp": "1592535714",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -1809,7 +1809,7 @@
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
         "license": [
-            "GPL-2.0+"
+            "GPL-2.0-or-later"
         ],
         "authors": [
             {
@@ -1853,7 +1853,7 @@
             "Toolbar"
         ],
         "support": {
-            "source": "http://cgit.drupalcode.org/admin_toolbar",
+            "source": "https://git.drupalcode.org/project/admin_toolbar",
             "issues": "https://www.drupal.org/project/issues/admin_toolbar"
         }
     },
@@ -2158,18 +2158,18 @@
     },
     {
         "name": "drupal/commerce",
-        "version": "2.19.0",
-        "version_normalized": "2.19.0.0",
+        "version": "2.20.0",
+        "version_normalized": "2.20.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/commerce.git",
-            "reference": "8.x-2.19"
+            "reference": "8.x-2.20"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/commerce-8.x-2.19.zip",
-            "reference": "8.x-2.19",
-            "shasum": "e782ff2b9271cb69cf3ef0a2bf30bd19f9837293"
+            "url": "https://ftp.drupal.org/files/projects/commerce-8.x-2.20.zip",
+            "reference": "8.x-2.20",
+            "shasum": "ef187586d1752acf624a750613bd0ae55a7f4f4e"
         },
         "require": {
             "commerceguys/intl": "^1.0.0",
@@ -2200,8 +2200,8 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-2.19",
-                "datestamp": "1591211125",
+                "version": "8.x-2.20",
+                "datestamp": "1593196157",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2239,8 +2239,8 @@
     },
     {
         "name": "drupal/commerce_number_pattern",
-        "version": "2.19.0",
-        "version_normalized": "2.19.0.0",
+        "version": "2.20.0",
+        "version_normalized": "2.20.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_store": "*",
@@ -2249,8 +2249,8 @@
         "type": "metapackage",
         "extra": {
             "drupal": {
-                "version": "8.x-2.19",
-                "datestamp": "1591211125",
+                "version": "8.x-2.20",
+                "datestamp": "1593196157",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2287,8 +2287,8 @@
     },
     {
         "name": "drupal/commerce_order",
-        "version": "2.19.0",
-        "version_normalized": "2.19.0.0",
+        "version": "2.20.0",
+        "version_normalized": "2.20.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_number_pattern": "*",
@@ -2302,8 +2302,8 @@
         "type": "metapackage",
         "extra": {
             "drupal": {
-                "version": "8.x-2.19",
-                "datestamp": "1591211125",
+                "version": "8.x-2.20",
+                "datestamp": "1593196157",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2340,8 +2340,8 @@
     },
     {
         "name": "drupal/commerce_payment",
-        "version": "2.19.0",
-        "version_normalized": "2.19.0.0",
+        "version": "2.20.0",
+        "version_normalized": "2.20.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_order": "*",
@@ -2351,8 +2351,8 @@
         "type": "metapackage",
         "extra": {
             "drupal": {
-                "version": "8.x-2.19",
-                "datestamp": "1591211125",
+                "version": "8.x-2.20",
+                "datestamp": "1593196157",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2389,30 +2389,30 @@
     },
     {
         "name": "drupal/commerce_paypal",
-        "version": "1.0.0-beta6",
-        "version_normalized": "1.0.0.0-beta6",
+        "version": "1.0.0-beta8",
+        "version_normalized": "1.0.0.0-beta8",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/commerce_paypal.git",
-            "reference": "8.x-1.0-beta6"
+            "reference": "8.x-1.0-beta8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/commerce_paypal-8.x-1.0-beta6.zip",
-            "reference": "8.x-1.0-beta6",
-            "shasum": "7d8b02514918aeb734d948001ea53aebd0852f92"
+            "url": "https://ftp.drupal.org/files/projects/commerce_paypal-8.x-1.0-beta8.zip",
+            "reference": "8.x-1.0-beta8",
+            "shasum": "66523fec271b70e842644d4ca5025f94c9cec475"
         },
         "require": {
-            "drupal/commerce": "^2.14",
+            "drupal/commerce": "^2.19",
             "drupal/commerce_payment": "*",
-            "drupal/core": "~8.0",
+            "drupal/core": "^8.8 || ^9",
             "sainsburys/guzzle-oauth2-plugin": "^3.0"
         },
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-1.0-beta6",
-                "datestamp": "1570114089",
+                "version": "8.x-1.0-beta8",
+                "datestamp": "1593186021",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -2422,7 +2422,7 @@
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
         "license": [
-            "GPL-2.0+"
+            "GPL-2.0-or-later"
         ],
         "authors": [
             {
@@ -2450,8 +2450,8 @@
     },
     {
         "name": "drupal/commerce_price",
-        "version": "2.19.0",
-        "version_normalized": "2.19.0.0",
+        "version": "2.20.0",
+        "version_normalized": "2.20.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/core": "^8.8 || ^9"
@@ -2459,8 +2459,8 @@
         "type": "metapackage",
         "extra": {
             "drupal": {
-                "version": "8.x-2.19",
-                "datestamp": "1591211125",
+                "version": "8.x-2.20",
+                "datestamp": "1593196157",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2497,8 +2497,8 @@
     },
     {
         "name": "drupal/commerce_store",
-        "version": "2.19.0",
-        "version_normalized": "2.19.0.0",
+        "version": "2.20.0",
+        "version_normalized": "2.20.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_price": "*",
@@ -2507,8 +2507,8 @@
         "type": "metapackage",
         "extra": {
             "drupal": {
-                "version": "8.x-2.19",
-                "datestamp": "1591211125",
+                "version": "8.x-2.20",
+                "datestamp": "1593196157",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -4916,18 +4916,18 @@
     },
     {
         "name": "drupal/webform",
-        "version": "5.16.0",
-        "version_normalized": "5.16.0.0",
+        "version": "5.19.0",
+        "version_normalized": "5.19.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/webform.git",
-            "reference": "8.x-5.16"
+            "reference": "8.x-5.19"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.16.zip",
-            "reference": "8.x-5.16",
-            "shasum": "a8bfe83d56ffd0fce16af9aa7eb4209247e5d420"
+            "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.19.zip",
+            "reference": "8.x-5.19",
+            "shasum": "90a2084c2647bca791cc8b18a7e2a3b49f3da7ea"
         },
         "require": {
             "drupal/core": "^8.8"
@@ -4937,20 +4937,23 @@
             "drupal/bootstrap": "~3.0",
             "drupal/captcha": "~1.0",
             "drupal/chosen": "~2.0",
-            "drupal/devel": "*",
-            "drupal/entity_print": "*",
+            "drupal/clientside_validation": "~3.0",
+            "drupal/clientside_validation_jquery": "*",
+            "drupal/devel": "~3.0",
+            "drupal/entity_print": "~2.0",
             "drupal/gnode": "*",
-            "drupal/group": "*",
-            "drupal/lingotek": "~2.0",
+            "drupal/group": "~1.0",
+            "drupal/lingotek": "~3.0",
             "drupal/mailsystem": "~4.0",
             "drupal/paragraphs": "~1.0",
             "drupal/select2": "~1.0",
             "drupal/smtp": "~1.0",
             "drupal/styleguide": "~1.0",
             "drupal/telephone_validation": "~2.0",
-            "drupal/token": "*",
+            "drupal/token": "~1.0",
             "drupal/webform_access": "*",
             "drupal/webform_attachment": "*",
+            "drupal/webform_clientside_validation": "*",
             "drupal/webform_devel": "*",
             "drupal/webform_entity_print": "*",
             "drupal/webform_group": "*",
@@ -4963,8 +4966,8 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-5.16",
-                "datestamp": "1591198998",
+                "version": "8.x-5.19",
+                "datestamp": "1593681136",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -5037,24 +5040,25 @@
     },
     {
         "name": "drupal/xmlsitemap",
-        "version": "1.0.0-rc1",
-        "version_normalized": "1.0.0.0-RC1",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/xmlsitemap.git",
-            "reference": "8.x-1.0-rc1"
+            "reference": "8.x-1.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/xmlsitemap-8.x-1.0-rc1.zip",
-            "reference": "8.x-1.0-rc1",
-            "shasum": "9b88caa55f9a45b8c89a1284d2db739fbf0c830f"
+            "url": "https://ftp.drupal.org/files/projects/xmlsitemap-8.x-1.0.zip",
+            "reference": "8.x-1.0",
+            "shasum": "29395aa9eea8a58edefa3f9e0999d4d3a7f6b08f"
         },
         "require": {
-            "drupal/core": "^8 || ^9",
+            "drupal/core": "^8.8 || ^9",
             "ext-xmlwriter": "*"
         },
         "require-dev": {
+            "drupal/metatag": "^1.0",
             "drupal/robotstxt": "^1.0"
         },
         "suggest": {
@@ -5062,15 +5066,12 @@
         },
         "type": "drupal-module",
         "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
             "drupal": {
-                "version": "8.x-1.0-rc1",
-                "datestamp": "1576705928",
+                "version": "8.x-1.0",
+                "datestamp": "1593451044",
                 "security-coverage": {
-                    "status": "not-covered",
-                    "message": "RC releases are not covered by Drupal security advisories."
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
                 }
             },
             "drush": {
@@ -5125,7 +5126,7 @@
         "description": "Creates XML sitemaps for the site",
         "homepage": "https://www.drupal.org/project/xmlsitemap",
         "support": {
-            "source": "http://cgit.drupalcode.org/xmlsitemap",
+            "source": "https://git.drupalcode.org/project/xmlsitemap",
             "issues": "http://drupal.org/project/issues/xmlsitemap"
         }
     },
@@ -5209,17 +5210,17 @@
     },
     {
         "name": "drush/drush",
-        "version": "10.2.2",
-        "version_normalized": "10.2.2.0",
+        "version": "10.3.1",
+        "version_normalized": "10.3.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drush-ops/drush.git",
-            "reference": "8307a4e7dae9c63a279d8b59b9dca6c1973576c2"
+            "reference": "aad2b17ad34801d9b55cff903e3e7db65d754b80"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drush-ops/drush/zipball/8307a4e7dae9c63a279d8b59b9dca6c1973576c2",
-            "reference": "8307a4e7dae9c63a279d8b59b9dca6c1973576c2",
+            "url": "https://api.github.com/repos/drush-ops/drush/zipball/aad2b17ad34801d9b55cff903e3e7db65d754b80",
+            "reference": "aad2b17ad34801d9b55cff903e3e7db65d754b80",
             "shasum": ""
         },
         "require": {
@@ -5227,7 +5228,7 @@
             "composer/semver": "^1.4",
             "consolidation/config": "^1.2",
             "consolidation/filter-via-dot-access-data": "^1",
-            "consolidation/robo": "^1 || ^2",
+            "consolidation/robo": "^1.4.11 || ^2",
             "consolidation/site-alias": "^3.0.0@stable",
             "consolidation/site-process": "^2.1 || ^4",
             "ext-dom": "*",
@@ -5246,6 +5247,7 @@
         "require-dev": {
             "composer/installers": "^1.7",
             "cweagans/composer-patches": "~1.0",
+            "david-garcia/phpwhois": "4.3.0",
             "drupal/alinks": "1.0.0",
             "drupal/core-recommended": "^8.8",
             "g1a/composer-test-scenarios": "^3",
@@ -5254,7 +5256,7 @@
             "squizlabs/php_codesniffer": "^2.7 || ^3",
             "vlucas/phpdotenv": "^2.4"
         },
-        "time": "2020-02-26T21:07:53+00:00",
+        "time": "2020-06-30T19:43:45+00:00",
         "bin": [
             "drush"
         ],
@@ -5336,7 +5338,13 @@
             }
         ],
         "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
-        "homepage": "http://www.drush.org"
+        "homepage": "http://www.drush.org",
+        "funding": [
+            {
+                "url": "https://github.com/weitzman",
+                "type": "github"
+            }
+        ]
     },
     {
         "name": "easyrdf/easyrdf",
@@ -6253,17 +6261,17 @@
     },
     {
         "name": "nikic/php-parser",
-        "version": "v4.5.0",
-        "version_normalized": "4.5.0.0",
+        "version": "v4.6.0",
+        "version_normalized": "4.6.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nikic/PHP-Parser.git",
-            "reference": "53c2753d756f5adb586dca79c2ec0e2654dd9463"
+            "reference": "c346bbfafe2ff60680258b631afb730d186ed864"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/53c2753d756f5adb586dca79c2ec0e2654dd9463",
-            "reference": "53c2753d756f5adb586dca79c2ec0e2654dd9463",
+            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c346bbfafe2ff60680258b631afb730d186ed864",
+            "reference": "c346bbfafe2ff60680258b631afb730d186ed864",
             "shasum": ""
         },
         "require": {
@@ -6274,7 +6282,7 @@
             "ircmaxell/php-yacc": "0.0.5",
             "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
         },
-        "time": "2020-06-03T07:24:19+00:00",
+        "time": "2020-07-02T17:12:47+00:00",
         "bin": [
             "bin/php-parse"
         ],
@@ -8230,27 +8238,31 @@
     },
     {
         "name": "symfony/polyfill-php80",
-        "version": "v1.17.0",
-        "version_normalized": "1.17.0.0",
+        "version": "v1.17.1",
+        "version_normalized": "1.17.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-php80.git",
-            "reference": "5e30b2799bc1ad68f7feb62b60a73743589438dd"
+            "reference": "4a5b6bba3259902e386eb80dd1956181ee90b5b2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/5e30b2799bc1ad68f7feb62b60a73743589438dd",
-            "reference": "5e30b2799bc1ad68f7feb62b60a73743589438dd",
+            "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/4a5b6bba3259902e386eb80dd1956181ee90b5b2",
+            "reference": "4a5b6bba3259902e386eb80dd1956181ee90b5b2",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0.8"
         },
-        "time": "2020-05-12T16:47:27+00:00",
+        "time": "2020-06-06T08:46:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "1.17-dev"
+            },
+            "thanks": {
+                "name": "symfony/polyfill",
+                "url": "https://github.com/symfony/polyfill"
             }
         },
         "installation-source": "dist",
