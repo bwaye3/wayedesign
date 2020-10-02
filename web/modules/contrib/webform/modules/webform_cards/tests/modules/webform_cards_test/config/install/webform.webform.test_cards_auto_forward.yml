@@ -1,3 +1,4 @@
+uuid: null
 langcode: en
 status: open
 dependencies:
@@ -12,7 +13,7 @@ template: false
 archive: false
 id: test_cards_auto_forward
 title: 'Test: Webform: Cards auto-forward'
-description: 'Test cards progress auto_forward.'
+description: 'Test cards progress with auto forwarding.'
 category: 'Test: Cards'
 elements: |
   textfield_example:
@@ -91,7 +92,7 @@ elements: |
         two: Two
         three: Three
       '#options_display': buttons
-
+  
 css: ''
 javascript: ''
 settings:
@@ -133,6 +134,7 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_elements_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''
@@ -164,6 +166,8 @@ settings:
   wizard_progress_link: true
   wizard_progress_states: false
   wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: true
   wizard_confirmation: false
@@ -219,6 +223,7 @@ settings:
   results_customize: false
   token_view: false
   token_update: false
+  serial_disabled: false
 access:
   create:
     roles:

@@ -3,6 +3,7 @@
 namespace Drupal\commerce_paypal\Plugin\Commerce\PaymentGateway;
 
 use Drupal\commerce_order\Entity\OrderInterface;
+use Drupal\commerce_payment\CreditCard;
 use Drupal\commerce_payment\Entity\PaymentInterface;
 use Drupal\commerce_payment\Entity\PaymentMethodInterface;
 use Drupal\commerce_payment\Exception\HardDeclineException;
@@ -756,7 +757,20 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
     // Check if we have information about the card used.
     if (isset($paypal_order['payment_source']['card'])) {
       $payment_source = $paypal_order['payment_source']['card'];
-      $payment_method->set('card_type', strtolower($payment_source['brand']));
+
+      // Remove any character that isn't A-Z, a-z or 0-9.
+      $payment_source['brand'] = strtolower(preg_replace("/[^A-Za-z0-9]/", '', $payment_source['brand']));
+
+      // We should in theory map the credit card type we get from PayPal to one
+      // expected by us, but the credit card types are not correctly documented.
+      // For example, ("Mastercard" is sent as "MASTER_CARD" but documented
+      // as "MASTERCARD").
+      $card_types = CreditCard::getTypes();
+      if (!isset($card_types[$payment_source['brand']])) {
+        throw new HardDeclineException(sprintf('Unsupported credit card type "%s".', $paypal_order['payment_source']['card']));
+      }
+
+      $payment_method->set('card_type', $payment_source['brand']);
       $payment_method->set('card_number', $payment_source['last_digits']);
     }
     $payment_method->setRemoteId($paypal_order['id']);

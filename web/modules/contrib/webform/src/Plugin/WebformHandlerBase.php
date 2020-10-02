@@ -10,6 +10,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\webform\Utility\WebformDialogHelper;
 use Drupal\webform\Utility\WebformElementHelper;
 use Drupal\webform\WebformInterface;
 use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
@@ -74,6 +75,13 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
    * @var array
    */
   protected $conditions = [];
+
+  /**
+   * The webform handler's conditions result cache.
+   *
+   * @var array
+   */
+  protected $conditionsResultCache = [];
 
   /**
    * The configuration factory.
@@ -293,6 +301,7 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
    */
   public function setConditions(array $conditions) {
     $this->conditions = $conditions;
+    $this->conditionsResultCache = [];
     return $this;
   }
 
@@ -386,8 +395,14 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
    * {@inheritdoc}
    */
   public function checkConditions(WebformSubmissionInterface $webform_submission) {
+    $hash = $webform_submission->getDataHash();
+    if (isset($this->conditionsResultCache[$hash])) {
+      return $this->conditionsResultCache[$hash];
+    }
+
     // Return TRUE if conditions are disabled for the handler.
     if (!$this->supportsConditions()) {
+      $this->conditionsResultCache[$hash] = TRUE;
       return TRUE;
     }
 
@@ -395,6 +410,7 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
 
     // Return TRUE if no conditions are defined.
     if (empty($conditions)) {
+      $this->conditionsResultCache[$hash] = TRUE;
       return TRUE;
     }
 
@@ -409,7 +425,9 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
     $result = $this->conditionsValidator->validateConditions($conditions, $webform_submission);
 
     // Negate result for 'disabled' state.
-    return ($state === 'disabled') ? !$result : $result;
+    $result = ($state === 'disabled') ? !$result : $result;
+    $this->conditionsResultCache[$hash] = $result;
+    return $result;
   }
 
   /**
@@ -453,6 +471,13 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
    */
   public function defaultConfiguration() {
     return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOffCanvasWidth() {
+    return WebformDialogHelper::DIALOG_NORMAL;
   }
 
   /**

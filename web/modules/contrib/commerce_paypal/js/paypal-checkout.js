@@ -40,8 +40,8 @@
         style: settings['style']
       }).render('#' + settings['elementId']);
     },
-    initialize: function (context, settings) {
-      if (context === document && !this.initialized) {
+    initialize: function (settings) {
+      if (!this.initialized) {
         // Ensure we initialize the script only once.
         this.initialized = true;
         var script = document.createElement('script');
@@ -72,9 +72,9 @@
 
   Drupal.behaviors.commercePaypalCheckout = {
     attach: function (context, settings) {
-      $('body').once('paypal-checkout-init').each(function() {
-        $.each(settings.paypalCheckout, function(key, value) {
-          Drupal.paypalCheckout.initialize(context, value);
+      $.each(settings.paypalCheckout, function(key, value) {
+        $('#' + value['elementId']).once('paypal-checkout-init').each(function() {
+          Drupal.paypalCheckout.initialize(value);
         });
       });
     }

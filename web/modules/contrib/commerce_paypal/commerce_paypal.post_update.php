@@ -105,11 +105,12 @@ function commerce_paypal_post_update_2(&$sandbox = NULL) {
 }
 
 /**
- * Uninstall the PayPal Checkout payment method type.
+ * Empty post update function.
  */
 function commerce_paypal_post_update_3() {
-  $entity_type = \Drupal::entityTypeManager()->getDefinition('commerce_payment_method');
-  \Drupal::service('entity.bundle_plugin_installer')->uninstallBundles($entity_type, ['commerce_paypal']);
+  // This used to contain logic to uninstall the "paypal_checkout" payment
+  // method type which is no longer relevant and could cause issues when
+  // upgrading from previous beta versions.
 }
 
 /**

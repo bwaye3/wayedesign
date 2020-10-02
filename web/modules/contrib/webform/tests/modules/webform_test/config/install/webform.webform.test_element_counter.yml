@@ -1,3 +1,4 @@
+uuid: null
 langcode: en
 status: open
 dependencies:
@@ -55,7 +56,7 @@ elements: |
       '#counter_maximum': 10
       '#counter_minimum_message': '<script>alert(''XSS'');</script><em>%d</em> character(s) entered.'
       '#counter_maximum_message': '<script>alert(''XSS'');</script><em>%d</em> character(s) remaining.'
-
+  
   counter_word:
     '#type': details
     '#title': counter_word
@@ -88,7 +89,7 @@ elements: |
       '#counter_type': word
       '#counter_maximum': 10
       '#counter_maximum_message': '%d character(s) remaining. This is custom text'
-
+  
 css: ''
 javascript: ''
 settings:
@@ -130,6 +131,7 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_elements_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''
@@ -161,6 +163,8 @@ settings:
   wizard_progress_link: false
   wizard_progress_states: false
   wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
@@ -216,6 +220,7 @@ settings:
   results_customize: false
   token_view: false
   token_update: false
+  serial_disabled: false
 access:
   create:
     roles:

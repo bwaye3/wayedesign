@@ -24,3 +24,11 @@ commerce_paypal.checkout.approve:
         type: entity:commerce_payment_gateway
       commerce_order:
         type: entity:commerce_order
+
+commerce_paypal.credit_messaging_settings:
+  path: '/admin/commerce/config/payment/paypal-credit'
+  defaults:
+    _form: '\Drupal\commerce_paypal\Form\CreditMessagingForm'
+    _title: 'Paypal Credit messaging'
+  requirements:
+    _permission: 'administer commerce payment gateway'

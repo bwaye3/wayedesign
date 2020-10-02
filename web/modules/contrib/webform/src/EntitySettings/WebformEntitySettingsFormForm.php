@@ -174,6 +174,17 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       '#classes' => $this->config('webform.settings')->get('settings.form_classes'),
       '#default_value' => (isset($elements['#attributes'])) ? $elements['#attributes'] : [],
     ];
+    $form['form_settings']['form_elements'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Form elements (container) attributes'),
+      '#open' => TRUE,
+    ];
+    $form['form_settings']['form_elements']['form_elements_attributes'] = [
+      '#type' => 'webform_element_attributes',
+      '#title' => $this->t('Form elements'),
+      '#classes' => $this->config('webform.settings')->get('settings.form_classes'),
+      '#default_value' => $settings['form_elements_attributes'],
+    ];
 
     // Form behaviors.
     $form['form_behaviors'] = [
@@ -358,12 +369,34 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
     ];
     $form['wizard_settings']['wizard_auto_forward'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t("Auto-forward to next page when a page with a single click-able input is completed"),
-      '#description' => $this->t("If checked, the used will be moved to the next page when a single click-able input is checked (i.e. radios, rating, and image select)."),
+      '#title' => $this->t('Auto-forward to next card when a card with a single click-able input is completed'),
+      '#description' => $this->t('If checked, the used will be moved to the next card when a single click-able input is checked (i.e. radios, rating, and image select).'),
       '#return_value' => TRUE,
       '#default_value' => $settings['wizard_auto_forward'],
       '#access' => FALSE,
     ];
+    $form['wizard_settings']['wizard_auto_forward_hide_next_button'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide the next button when auto-forwarding'),
+      '#description' => $this->t('If checked, the next button will be hidden when the input is not filled and can be auto-forwarded.'),
+      '#return_value' => TRUE,
+      '#default_value' => $settings['wizard_auto_forward_hide_next_button'],
+      '#access' => FALSE,
+      '#states' => [
+        'visible' => [
+          ':input[name="wizard_auto_forward]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['wizard_settings']['wizard_keyboard'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Navigate between cards using left or right arrow keys'),
+      '#description' => $this->t('If checked, users will be able to move between cards using the left or right arrow keys.'),
+      '#return_value' => TRUE,
+      '#default_value' => $settings['wizard_keyboard'],
+      '#access' => FALSE,
+    ];
+
     $form['wizard_settings']['wizard_confirmation'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Include confirmation page in progress'),

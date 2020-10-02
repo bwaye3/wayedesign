@@ -125,3 +125,58 @@ function commerce_paypal_commerce_checkout_flow_access(CheckoutFlowInterface $ch
   }
   return AccessResult::neutral();
 }
+
+/**
+ * Implements hook_library_info_build().
+ */
+function commerce_paypal_library_info_build() {
+  $libraries = [];
+
+  // Only build the PayPal Credit messaging JS if a PayPal Client ID was set on
+  // the PayPal Credit messaging settings form.
+  $client_id = \Drupal::config('commerce_paypal.settings')->get('commerce_paypal.credit_messaging_client_id');
+
+  if ($client_id) {
+    $url = 'https://www.paypal.com/sdk/js?client-id=' . $client_id . '&components=messages';
+    $libraries['credit_messaging'] = [
+      'header' => TRUE,
+      'js' => [
+        $url => ['type' => 'external'],
+      ],
+    ];
+  }
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function commerce_paypal_form_commerce_order_item_add_to_cart_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Check to see if PayPal Credit messaging is enabled on Add to Cart forms.
+  $enable_messaging = \Drupal::config('commerce_paypal.settings')->get('commerce_paypal.credit_messaging_add_to_cart');
+
+  if (!empty($enable_messaging)) {
+    /** @var \Drupal\commerce_product\Entity\ProductInterface $product */
+    $product = $form_state->get('product');
+
+    // @todo support other purchasable entity types than commerce_product.
+    if (!empty($product)) {
+      // Get the price amount from the default variation.
+      // @todo pick the price amount from the currently selected variation.
+      $amount = $product->getDefaultVariation()->get('price')->getValue()[0]['number'];
+
+      // Add Credit Messaging JS to the form.
+      // @todo ensure messaging reapplies after an Ajax refresh.
+      $form['#attached']['library'][] = 'commerce_paypal/credit_messaging';
+
+      // Add the product placement messaging above the Add To Cart button.
+      $markup = '<div data-pp-message data-pp-placement="product" data-pp-amount="' . $amount . '"></div>';
+      $form['paypal_credit_messaging_product'] = [
+        '#type' => 'markup',
+        '#markup' => $markup,
+        '#weight' => 1,
+      ];
+    }
+  }
+}
