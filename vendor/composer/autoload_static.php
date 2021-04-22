@@ -42,10 +42,6 @@ class ComposerStaticInit0a2466ebd6c5d49aaf4b74d11f4575f5
     );
 
     public static $prefixLengthsPsr4 = array (
-        'X' => 
-        array (
-            'XdgBaseDir\\' => 11,
-        ),
         'W' => 
         array (
             'Webmozart\\PathUtil\\' => 19,
@@ -131,6 +127,7 @@ class ComposerStaticInit0a2466ebd6c5d49aaf4b74d11f4575f5
         ),
         'E' => 
         array (
+            'Enlightn\\SecurityChecker\\' => 25,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -170,10 +167,6 @@ class ComposerStaticInit0a2466ebd6c5d49aaf4b74d11f4575f5
     );
 
     public static $prefixDirsPsr4 = array (
-        'XdgBaseDir\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
-        ),
         'Webmozart\\PathUtil\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/path-util/src',
@@ -385,6 +378,10 @@ class ComposerStaticInit0a2466ebd6c5d49aaf4b74d11f4575f5
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'Enlightn\\SecurityChecker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/enlightn/security-checker/src',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
