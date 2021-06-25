@@ -781,8 +781,8 @@ $databases['default']['default'] = array (
 $settings['install_profile'] = 'standard';
 
 $settings['trusted_host_patterns'] = [
-  '^www\wayedesigngroup\.com$',
   '^wayedesigngroup\.com$',
+  '^www\.wayedesigngroup\.com$',
 ];
 
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
