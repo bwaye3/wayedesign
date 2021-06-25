@@ -3,10 +3,14 @@
 namespace Drupal\webform_access\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+<<<<<<< HEAD
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+=======
+
+>>>>>>> dev
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Session\AccountInterface;
+use Drupal\webform\EntityStorage\WebformEntityStorageTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,6 +23,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class WebformAccessGroupEntityBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  use WebformEntityStorageTrait;
 
   /**
    * The current user.
@@ -36,6 +42,7 @@ class WebformAccessGroupEntityBlock extends BlockBase implements ContainerFactor
 
   /**
    * The 'language_manager' service.
+<<<<<<< HEAD
    *
    * @var \Drupal\Core\Language\LanguageManagerInterface
    */
@@ -63,11 +70,18 @@ class WebformAccessGroupEntityBlock extends BlockBase implements ContainerFactor
     $this->webformAccessGroupStorage = $entity_type_manager->getStorage('webform_access_group');
     $this->languageManager = $language_manager;
   }
+=======
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+>>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+<<<<<<< HEAD
     return new static(
       $configuration,
       $plugin_id,
@@ -77,6 +91,13 @@ class WebformAccessGroupEntityBlock extends BlockBase implements ContainerFactor
       $container->get('language_manager')
 
     );
+=======
+    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance->currentUser = $container->get('current_user');
+    $instance->entityTypeManager = $container->get('entity_type.manager');
+    $instance->languageManager = $container->get('language_manager');
+    return $instance;
+>>>>>>> dev
   }
 
   /**
@@ -84,7 +105,7 @@ class WebformAccessGroupEntityBlock extends BlockBase implements ContainerFactor
    */
   public function build() {
     /** @var \Drupal\node\NodeInterface[] $nodes */
-    $nodes = $this->webformAccessGroupStorage->getUserEntities($this->currentUser, 'node');
+    $nodes = $this->getEntityStorage('webform_access_group')->getUserEntities($this->currentUser, 'node');
     if (empty($nodes)) {
       return NULL;
     }

@@ -7,6 +7,7 @@
 
 use Drupal\Core\Template\Attribute;
 use Drupal\block\Entity\Block;
+use Drupal\Core\Url;
 
 $theme_path = drupal_get_path('theme', 'gavias_edupia');
 include_once $theme_path . '/includes/template.functions.php';
@@ -52,7 +53,7 @@ function gavias_edupia_preprocess_page(&$variables) {
   $user = \Drupal::currentUser();
   $user_picture = '';
   if($uid = $user->id()){
-    $custom_account = "Hi, <span>{$user->getUsername()}</span>";
+    $custom_account = "Hi, <span>{$user->getAccountname()}</span>";
     $user = \Drupal\user\Entity\User::load($uid);
     if (!empty($user->user_picture) && $user->user_picture->isEmpty() === FALSE) {
       $user_picture = $user->user_picture->entity->getFileUri();
@@ -137,9 +138,9 @@ function gavias_edupia_preprocess_html(&$variables) {
   $user = \Drupal::currentUser();
 
   if(theme_get_setting('enable_customize') == 1 &&  \Drupal::moduleHandler()->moduleExists('gaviasthemer') && ($user->hasPermission('administer gavias_customize') || $user->hasPermission('administer gavias_customize preview')) ){
-    $url_customize_save = \Drupal::url('gaviasthemer.admin.customize_save', array(), array('absolute' => TRUE));
+    $url_customize_save = Url::fromRoute('gaviasthemer.admin.customize_save', array(), array('absolute' => TRUE))->toString();
     $variables['#attached']['drupalSettings']['gavias_customize']['save'] = $url_customize_save;  
-    $url_customize_preview = \Drupal::url('gaviasthemer.admin.customize_preview', array(), array('absolute' => TRUE));
+    $url_customize_preview = Url::fromRoute('gaviasthemer.admin.customize_preview', array(), array('absolute' => TRUE))->toString();
     $variables['#attached']['drupalSettings']['gavias_customize']['preview'] = $url_customize_preview;  
     $variables['#attached']['library'][] = 'gaviasthemer/customize';
  
@@ -208,7 +209,7 @@ function gavias_edupia_preprocess_html(&$variables) {
   }
   
   if(\Drupal::service('module_handler')->moduleExists('gavias_hook_themer')){
-    $abs_url_config = \Drupal::url('gavias_hook_themer.ajax_views', array(), array('absolute' => FALSE)); 
+    $abs_url_config = Url::fromRoute('gavias_hook_themer.ajax_views', array(), array('absolute' => FALSE))->toString(); 
   }else{
     $abs_url_config = '';
   }
@@ -350,7 +351,7 @@ function gavias_edupia_theme_suggestions_page_alter(array &$suggestions, array $
     $type = '';
     if(is_object($product)){
       $id = $product->id();
-      $result = db_select('{commerce_product}', 'p')
+      $result = Drupal::database()->select('{commerce_product}', 'p')
         ->fields('p', array('product_id', 'type'))
         ->condition('product_id', $id, '=')
         ->execute()

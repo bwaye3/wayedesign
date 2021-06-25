@@ -18,8 +18,6 @@ dependencies:
     - field.field.commerce_product.course.field_course_teacher
     - field.field.commerce_product.course.field_course_video
     - field.field.commerce_product.course.field_what_learn
-    - field.field.commerce_product.course.stores
-    - field.field.commerce_product.course.variations
   module:
     - comment
     - commerce_product

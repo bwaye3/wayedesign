@@ -34,7 +34,7 @@ class ContentEntityTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'user',
     'migrate',
     'migrate_drupal',
@@ -90,7 +90,7 @@ class ContentEntityTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->installEntitySchema('node');
     $this->installEntitySchema('file');
@@ -102,7 +102,7 @@ class ContentEntityTest extends KernelTestBase {
     $this->installSchema('user', 'users_data');
     $this->installSchema('file', 'file_usage');
     $this->installSchema('node', ['node_access']);
-    $this->installConfig($this->modules);
+    $this->installConfig(static::$modules);
 
     ConfigurableLanguage::createFromLangcode('fr')->save();
 
@@ -149,6 +149,12 @@ class ContentEntityTest extends KernelTestBase {
       'mail' => 'example@example.com',
     ]);
     $this->user->save();
+
+    $this->anon = User::create([
+      'name' => 'anon',
+      'uid' => 0,
+    ]);
+    $this->anon->save();
 
     $term = Term::create([
       'vid' => $this->vocabulary,
@@ -273,6 +279,10 @@ class ContentEntityTest extends KernelTestBase {
     $user_source = $migration->getSourcePlugin();
     $this->assertSame('users', $user_source->__toString());
     if (!$configuration['include_translations']) {
+<<<<<<< HEAD
+=======
+      // Confirm that the query does not return a row for the anonymous user.
+>>>>>>> dev
       $this->assertEquals(1, $user_source->count());
     }
     $this->assertIds($user_source, $configuration);
@@ -463,16 +473,38 @@ class ContentEntityTest extends KernelTestBase {
     $values = $term_source->current()->getSource();
     $this->assertEquals($this->vocabulary, $values['vid'][0]['target_id']);
     $this->assertEquals(1, $values['tid']);
-    // @TODO: Add test coverage for parent in
-    // https://www.drupal.org/project/drupal/issues/2940198
     $this->assertEquals('Apples', $values['name'][0]['value']);
+    $this->assertSame([['target_id' => '0']], $values['parent']);
     $term_source->next();
     $values = $term_source->current()->getSource();
     $this->assertEquals($this->vocabulary, $values['vid'][0]['target_id']);
     $this->assertEquals(2, $values['tid']);
-    // @TODO: Add test coverage for parent in
-    // https://www.drupal.org/project/drupal/issues/2940198
     $this->assertEquals('Granny Smith', $values['name'][0]['value']);
+    $this->assertSame([['target_id' => '1']], $values['parent']);
+  }
+
+  /**
+   * Data provider for several test methods.
+   *
+   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testUserSource
+   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testFileSource
+   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testNodeSource
+   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testMediaSource
+   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testTermSource
+   */
+  public function migrationConfigurationProvider() {
+    $data = [];
+    foreach ([FALSE, TRUE] as $include_translations) {
+      foreach ([FALSE, TRUE] as $add_revision_id) {
+        $configuration = [
+          'include_translations' => $include_translations,
+          'add_revision_id' => $add_revision_id,
+        ];
+        // Add an array key for this data set.
+        $data[http_build_query($configuration)] = [$configuration];
+      }
+    }
+    return $data;
   }
 
   /**
