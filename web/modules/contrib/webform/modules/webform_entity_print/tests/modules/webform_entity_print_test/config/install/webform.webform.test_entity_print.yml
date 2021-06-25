@@ -19,8 +19,6 @@ elements: |
   textfield:
     '#type': textfield
     '#title': textfield
-<<<<<<< HEAD
-=======
   image_file_style:
     '#type': webform_image_file
     '#title': image_file_style
@@ -30,7 +28,6 @@ elements: |
     '#type': webform_image_file
     '#title': image_file
     '#file_extensions': gif
->>>>>>> dev
 
 css: '/** custom webform css **/'
 javascript: ''

@@ -68,74 +68,15 @@ trait WebformSubmissionDevelGenerateTrait {
 
   /**
    * The time service.
-<<<<<<< HEAD
    *
    * @var \Drupal\Component\Datetime\TimeInterface
    */
   protected $time;
-
-  /**
-   * Constructs a WebformSubmissionDevelGenerate object.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
-   *   The request stack.
-   * @param \Drupal\Core\Database\Connection $database
-   *   The database.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
-   *   The messenger.
-   * @param \Drupal\webform\WebformSubmissionGenerateInterface $webform_submission_generate
-   *   The webform submission generator.
-   * @param \Drupal\webform\WebformEntityReferenceManagerInterface $webform_entity_reference_manager
-   *   The webform entity reference manager.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time service.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack, Connection $database, EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, WebformSubmissionGenerateInterface $webform_submission_generate, WebformEntityReferenceManagerInterface $webform_entity_reference_manager, TimeInterface $time) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-
-    $this->request = $request_stack->getCurrentRequest();
-    $this->database = $database;
-    $this->entityTypeManager = $entity_type_manager;
-    $this->messenger = $messenger;
-    $this->webformSubmissionGenerate = $webform_submission_generate;
-    $this->webformEntityReferenceManager = $webform_entity_reference_manager;
-    $this->webformStorage = $entity_type_manager->getStorage('webform');
-    $this->webformSubmissionStorage = $entity_type_manager->getStorage('webform_submission');
-    $this->time = $time;
-  }
-=======
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
-   */
-  protected $time;
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-<<<<<<< HEAD
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('request_stack'),
-      $container->get('database'),
-      $container->get('entity_type.manager'),
-      $container->get('messenger'),
-      $container->get('webform_submission.generate'),
-      $container->get('webform.entity_reference_manager'),
-      $container->get('datetime.time')
-    );
-=======
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $instance->request = $container->get('request_stack')->getCurrentRequest();
     $instance->database = $container->get('database');
@@ -145,7 +86,6 @@ trait WebformSubmissionDevelGenerateTrait {
     $instance->webformEntityReferenceManager = $container->get('webform.entity_reference_manager');
     $instance->time = $container->get('datetime.time');
     return $instance;
->>>>>>> dev
   }
 
   /**

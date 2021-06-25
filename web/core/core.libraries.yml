@@ -12,32 +12,12 @@ backbone:
   dependencies:
     - core/underscore
 
-<<<<<<< HEAD
-classList:
-  remote: https://github.com/eligrey/classList.js
-  version: "2014-12-13"
-  license:
-    name: Public Domain
-    url: https://github.com/eligrey/classList.js/blob/2014-12-13/LICENSE.md
-    gpl-compatible: true
-  js:
-    assets/vendor/classList/classList.min.js: { weight: -21, browsers: { IE: 'lte IE 9', '!IE': false }, minified: true }
-  deprecated: The "%library_id%" asset library is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use the native browser implementation instead. See https://www.drupal.org/node/3089511
-
-ckeditor:
-  remote: https://github.com/ckeditor/ckeditor-dev
-  version: "4.16.1"
-  license:
-    name: GNU-GPL-2.0-or-later
-    url: https://github.com/ckeditor/ckeditor4/blob/4.16.1/LICENSE.md
-=======
 ckeditor:
   remote: https://github.com/ckeditor/ckeditor4
   version: "4.16.1"
   license:
     name: GNU-GPL-2.0-or-later
     url: https://raw.githubusercontent.com/ckeditor/ckeditor4/4.16.1/LICENSE.md
->>>>>>> dev
     gpl-compatible: true
   js:
     assets/vendor/ckeditor/ckeditor.js: { preprocess: false, minified: true }
@@ -831,11 +811,7 @@ underscore:
   version: "1.13.1"
   license:
     name: MIT
-<<<<<<< HEAD
-    url: https://github.com/jashkenas/underscore/blob/1.13.1/LICENSE
-=======
     url: https://raw.githubusercontent.com/jashkenas/underscore/1.13.1/LICENSE
->>>>>>> dev
     gpl-compatible: true
   js:
     assets/vendor/underscore/underscore-min.js: { weight: -20, minified: true }

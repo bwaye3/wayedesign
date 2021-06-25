@@ -385,13 +385,7 @@ class ScheduleEmailWebformHandler extends EmailWebformHandler {
    * {@inheritdoc}
    */
   public function deleteHandler() {
-<<<<<<< HEAD
-    /** @var \Drupal\webform_scheduled_email\WebformScheduledEmailManagerInterface $webform_scheduled_email_manager */
-    $webform_scheduled_email_manager = \Drupal::service('webform_scheduled_email.manager');
-    $webform_scheduled_email_manager->delete($this->webform, $this->getHandlerId());
-=======
     $this->scheduledEmailManager->unschedule($this->webform, $this->getHandlerId());
->>>>>>> dev
   }
 
   /**

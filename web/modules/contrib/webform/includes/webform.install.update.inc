@@ -3915,12 +3915,6 @@ function webform_update_8210() {
   _webform_update_webform_settings();
 }
 
-<<<<<<< HEAD
-/**
- * Issue #174151 Webform Contact Form - open mail relay.
- */
-function webform_update_8211() {
-=======
 /******************************************************************************/
 // Webform 6.x.
 /******************************************************************************/
@@ -4202,7 +4196,6 @@ function webform_update_8621() {
  * Issue #174151 Webform Contact Form - open mail relay.
  */
 function webform_update_8622() {
->>>>>>> dev
   $config_factory = \Drupal::configFactory();
 
   $config = $config_factory->getEditable('webform.webform.contact');
@@ -4217,15 +4210,9 @@ function webform_update_8622() {
 
     /** @var \Drupal\webform\WebformHelpManagerInterface $help_manager */
     $help_manager = \Drupal::service('webform.help_manager');
-<<<<<<< HEAD
-    $help_manager->addNotification('webform_update_8211',
-      t("<strong>ATTENTION!!!</strong> The default Contact webform, included with the Webform module, has been updated to send the confirmation email to an authenticated user's email address.") .
-      ' ' . t('<a href=":href">Learn more</a>', [':href' => 'https://www.drupal.org/project/webform/releases/8.x-5.25']),
-=======
     $help_manager->addNotification('webform_update_8622',
       t("<strong>ATTENTION!!!</strong> The default Contact webform, included with the Webform module, has been updated to send the confirmation email to an authenticated user's email address.") .
       ' ' . t('<a href=":href">Learn more</a>', [':href' => 'https://www.drupal.org/project/webform/releases/6.0.2']),
->>>>>>> dev
       'warning'
     );
   }

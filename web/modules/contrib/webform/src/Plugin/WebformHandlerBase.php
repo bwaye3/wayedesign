@@ -24,11 +24,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 abstract class WebformHandlerBase extends PluginBase implements WebformHandlerInterface {
 
-<<<<<<< HEAD
-=======
   use WebformEntityInjectionTrait;
   use WebformEntityStorageTrait;
->>>>>>> dev
   use WebformPluginSettingsTrait;
 
   /**

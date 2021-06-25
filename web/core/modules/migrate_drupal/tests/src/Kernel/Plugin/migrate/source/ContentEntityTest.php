@@ -279,10 +279,7 @@ class ContentEntityTest extends KernelTestBase {
     $user_source = $migration->getSourcePlugin();
     $this->assertSame('users', $user_source->__toString());
     if (!$configuration['include_translations']) {
-<<<<<<< HEAD
-=======
       // Confirm that the query does not return a row for the anonymous user.
->>>>>>> dev
       $this->assertEquals(1, $user_source->count());
     }
     $this->assertIds($user_source, $configuration);
@@ -481,30 +478,6 @@ class ContentEntityTest extends KernelTestBase {
     $this->assertEquals(2, $values['tid']);
     $this->assertEquals('Granny Smith', $values['name'][0]['value']);
     $this->assertSame([['target_id' => '1']], $values['parent']);
-  }
-
-  /**
-   * Data provider for several test methods.
-   *
-   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testUserSource
-   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testFileSource
-   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testNodeSource
-   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testMediaSource
-   * @see \Drupal\Tests\migrate_drupal\Kernel\Plugin\migrate\source\ContentEntityTest::testTermSource
-   */
-  public function migrationConfigurationProvider() {
-    $data = [];
-    foreach ([FALSE, TRUE] as $include_translations) {
-      foreach ([FALSE, TRUE] as $add_revision_id) {
-        $configuration = [
-          'include_translations' => $include_translations,
-          'add_revision_id' => $add_revision_id,
-        ];
-        // Add an array key for this data set.
-        $data[http_build_query($configuration)] = [$configuration];
-      }
-    }
-    return $data;
   }
 
   /**

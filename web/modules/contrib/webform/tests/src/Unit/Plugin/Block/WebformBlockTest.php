@@ -141,8 +141,6 @@ class WebformBlockTest extends UnitTestCase {
       ->disableOriginalConstructor()
       ->getMock();
 
-<<<<<<< HEAD
-=======
     // Build container.
     $container = new ContainerBuilder();
     $container->set('request_stack', $request_stack);
@@ -150,18 +148,13 @@ class WebformBlockTest extends UnitTestCase {
     $container->set('entity_type.manager', $entity_type_manager);
     $container->set('webform.token_manager', $token_manager);
 
->>>>>>> dev
     $configuration = ['webform_id' => $webform->id()];
 
     $plugin_id = 'webform_block';
 
     $plugin_definition = ['provider' => 'unit_test'];
 
-<<<<<<< HEAD
-    return new WebformBlock($configuration, $plugin_id, $plugin_definition, $request_stack, $entity_type_manager, $token_manager, $route_match);
-=======
     return WebformBlock::create($container, $configuration, $plugin_id, $plugin_definition);
->>>>>>> dev
   }
 
 }

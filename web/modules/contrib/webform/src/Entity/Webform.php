@@ -2412,13 +2412,8 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
       return;
     }
 
-<<<<<<< HEAD
-    $page_submit_path = trim($this->getSetting('page_submit_path'), '/');
-    $default_page_base_path = trim(\Drupal::config('webform.settings')->get('settings.default_page_base_path'), '/');
-=======
     $page_submit_path = $this->getSetting('page_submit_path');
     $default_page_base_path = \Drupal::config('webform.settings')->get('settings.default_page_base_path');
->>>>>>> dev
 
     // Skip generating paths if submit path and base path are empty.
     if (empty($page_submit_path) && empty($default_page_base_path)) {
@@ -2432,11 +2427,7 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
       $path_source = '/webform/' . $this->id() . $path_suffix;
       $path_alias = $path_base_alias . $path_suffix;
       if ($path_suffix === '/confirmation' && $this->getSetting('page_confirm_path')) {
-<<<<<<< HEAD
-        $path_alias = '/' . trim($this->getSetting('page_confirm_path'), '/');
-=======
         $path_alias = $this->getSetting('page_confirm_path');
->>>>>>> dev
       }
       $this->updatePath($path_source, $path_alias, $this->langcode);
       $this->updatePath($path_source, $path_alias, LanguageInterface::LANGCODE_NOT_SPECIFIED);

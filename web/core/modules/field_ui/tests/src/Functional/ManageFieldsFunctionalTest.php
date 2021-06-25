@@ -394,58 +394,15 @@ class ManageFieldsFunctionalTest extends BrowserTestBase {
       'cardinality' => 'number',
       'cardinality_number' => 3,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($field_edit_path, $edit, t('Save field settings'));
-
-    // Test the cardinality validation is not access sensitive.
-
-    // Remove the cardinality limit 4 so we can add a node the user doesn't have
-    // access to.
-    $edit = [
-      'cardinality' => (string) FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED,
-    ];
-    $this->drupalPostForm($field_edit_path, $edit, 'Save field settings');
-    $node = $this->drupalCreateNode([
-      'private' => TRUE,
-      'uid' => 0,
-      'type' => 'article',
-    ]);
-    $node->body->appendItem('body 1');
-    $node->body->appendItem('body 2');
-    $node->body->appendItem('body 3');
-    $node->body->appendItem('body 4');
-    $node->save();
-
-    // Assert that you can't set the cardinality to a lower number than the
-    // highest delta of this field (including inaccessible entities) but can
-    // set it to the same.
-    $this->drupalGet($field_edit_path);
-    $edit = [
-      'cardinality' => 'number',
-      'cardinality_number' => 2,
-    ];
-    $this->drupalPostForm($field_edit_path, $edit, 'Save field settings');
-    $this->assertRaw(t('There are @count entities with @delta or more values in this field.', ['@count' => 2, '@delta' => 3]));
-    $edit = [
-      'cardinality' => 'number',
-      'cardinality_number' => 3,
-    ];
-    $this->drupalPostForm($field_edit_path, $edit, 'Save field settings');
-=======
     $this->drupalGet($field_edit_path);
     $this->submitForm($edit, 'Save field settings');
->>>>>>> dev
     $this->assertRaw(t('There is @count entity with @delta or more values in this field.', ['@count' => 1, '@delta' => 4]));
     $edit = [
       'cardinality' => 'number',
       'cardinality_number' => 4,
     ];
-<<<<<<< HEAD
-    $this->drupalPostForm($field_edit_path, $edit, 'Save field settings');
-=======
     $this->drupalGet($field_edit_path);
     $this->submitForm($edit, 'Save field settings');
->>>>>>> dev
   }
 
   /**

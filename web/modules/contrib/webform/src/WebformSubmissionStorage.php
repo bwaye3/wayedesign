@@ -403,11 +403,6 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
    *   - check_source_entity (boolean): Check that a source entity is defined.
    *   - interval (int): Limit total within an seconds interval.
    *   - check_access (boolean): Check access to the submission.
-<<<<<<< HEAD
-   *
-   * @todo Webform 8.x-6.x: Remove and move code to ::addQueryConditions.
-=======
->>>>>>> dev
    */
   public function addQueryConditions($query, WebformInterface $webform = NULL, EntityInterface $source_entity = NULL, AccountInterface $account = NULL, array $options = []) {
     // Set default options/conditions.
@@ -979,11 +974,7 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
     // main transaction initialized in parent::save() to reduce blocking
     // concurrent webform submissions for as little time as possible.
     if (!$entity->serial() && !$entity->getWebform()->getSetting('serial_disabled')) {
-<<<<<<< HEAD
-      $next_serial = $this->entityTypeManager->getStorage('webform')->getSerial($entity->getWebform());
-=======
       $next_serial = $this->getWebformStorage()->getSerial($entity->getWebform());
->>>>>>> dev
       $entity->set('serial', $next_serial);
     }
     return parent::save($entity);
@@ -1247,11 +1238,7 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
 
     $remaining = $count;
     if (!empty($webform_ids)) {
-<<<<<<< HEAD
-      $webforms = $this->entityManager->getStorage('webform')->loadMultiple($webform_ids);
-=======
       $webforms = $this->getWebformStorage()->loadMultiple($webform_ids);
->>>>>>> dev
       foreach ($webforms as $webform) {
         $query = $this->getQuery();
         // Since results of this query are never displayed to the user and we

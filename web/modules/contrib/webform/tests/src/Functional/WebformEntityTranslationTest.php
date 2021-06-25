@@ -191,53 +191,6 @@ class WebformEntityTranslationTest extends WebformBrowserTestBase {
 
     // Check default elements.
     $this->drupalGet('/admin/structure/webform/manage/test_translation/translate/fr/add');
-<<<<<<< HEAD
-    $this->assertRaw('<textarea lang="fr" data-drupal-selector="edit-translation-config-names-webformwebformtest-translation-elements" aria-describedby="edit-translation-config-names-webformwebformtest-translation-elements--description" class="js-webform-codemirror webform-codemirror yaml form-textarea" data-webform-codemirror-mode="text/x-yaml" id="edit-translation-config-names-webformwebformtest-translation-elements" name="translation[config_names][webform.webform.test_translation][elements]" rows="65" cols="60">variant:
-  &#039;#title&#039;: Variant
-textfield:
-  &#039;#title&#039;: &#039;Text field&#039;
-select_options:
-  &#039;#title&#039;: &#039;Select (options)&#039;
-select_custom:
-  &#039;#title&#039;: &#039;Select (custom)&#039;
-  &#039;#options&#039;:
-    4: Four
-    5: Five
-    6: Six
-  &#039;#other__option_label&#039;: &#039;Custom number…&#039;
-details:
-  &#039;#title&#039;: Details
-markup:
-  &#039;#markup&#039;: &#039;This is some HTML markup.&#039;
-composite:
-  &#039;#title&#039;: Composite
-  &#039;#element&#039;:
-    first_name:
-      &#039;#title&#039;: &#039;First name&#039;
-    last_name:
-      &#039;#title&#039;: &#039;Last name&#039;
-    age:
-      &#039;#title&#039;: Age
-      &#039;#field_suffix&#039;: &#039; yrs. old&#039;
-address:
-  &#039;#title&#039;: Address
-  &#039;#address__title&#039;: Address
-  &#039;#address_2__title&#039;: &#039;Address 2&#039;
-  &#039;#city__title&#039;: City/Town
-  &#039;#state_province__title&#039;: State/Province
-  &#039;#postal_code__title&#039;: &#039;ZIP/Postal Code&#039;
-  &#039;#country__title&#039;: Country
-token:
-  &#039;#title&#039;: &#039;Computed (token)&#039;
-autocomplete_options:
-  &#039;#title&#039;: &#039;Autocomplete (options)&#039;
-autocomplete_custom:
-  &#039;#title&#039;: &#039;Autocomplete (custom)&#039;
-actions:
-  &#039;#title&#039;: &#039;Submit button(s)&#039;
-  &#039;#submit__label&#039;: &#039;Send message&#039;</textarea>
-</div>');
-=======
 
     // Check custom HTML Editor.
     $this->assertCssSelect('textarea.js-html-editor[name="translation[config_names][webform.webform.test_translation][description][value]"]');
@@ -253,7 +206,6 @@ actions:
     $webform->save();
     $this->drupalGet('/admin/structure/webform/manage/test_translation/translate/fr/add');
     $this->assertCssSelect('textarea.js-webform-codemirror.twig[name="translation[config_names][webform.webform.test_translation][handlers][email_confirmation][settings][body]"]');
->>>>>>> dev
 
     // Check customized maxlengths.
     $this->assertCssSelect('input[name$="[title]"]');

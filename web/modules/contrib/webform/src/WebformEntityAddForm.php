@@ -18,8 +18,6 @@ class WebformEntityAddForm extends BundleEntityFormBase {
   use WebformDialogFormTrait;
 
   /**
-<<<<<<< HEAD
-=======
    * The state service.
    *
    * @var \Drupal\Core\State\StateInterface
@@ -34,7 +32,6 @@ class WebformEntityAddForm extends BundleEntityFormBase {
   protected $routeMatch;
 
   /**
->>>>>>> dev
    * The module handler.
    *
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
@@ -49,28 +46,6 @@ class WebformEntityAddForm extends BundleEntityFormBase {
   protected $languageManager;
 
   /**
-<<<<<<< HEAD
-   * Constructs a WebformEntityAddForm.
-   *
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   The module handler.
-   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
-   *   The language manager.
-   */
-  public function __construct(ModuleHandlerInterface $module_handler, LanguageManagerInterface $language_manager) {
-    $this->moduleHandler = $module_handler;
-    $this->languageManager = $language_manager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('module_handler'),
-      $container->get('language_manager')
-    );
-=======
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
@@ -79,7 +54,6 @@ class WebformEntityAddForm extends BundleEntityFormBase {
     $instance->routeMatch = $container->get('current_route_match');
     $instance->languageManager = $container->get('language_manager');
     return $instance;
->>>>>>> dev
   }
 
   /**

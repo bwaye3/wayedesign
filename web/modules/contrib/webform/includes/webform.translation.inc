@@ -65,86 +65,6 @@ function webform_form_config_translation_add_form_alter(&$form, FormStateInterfa
   $translation_config_manager->alterForm($form, $form_state);
 }
 
-<<<<<<< HEAD
-/**
- * Alter form element recursively.
- *
- * @param array $elements
- *   An associative array of form elements.
- * @param array $element_alterations
- *   An associative array of element alterations.
- */
-function _webform_form_config_translation_add_form_alter_elements(array &$elements, array $element_alterations) {
-  foreach ($elements as $key => &$element) {
-    if (WebformElementHelper::property($key) || !is_array($element)) {
-      continue;
-    }
-
-    // Override/alter translation element.
-    if (array_key_exists($key, $element_alterations)
-      && isset($element['translation'])
-      && isset($element['translation']['#type'])) {
-      $element['translation'] = $element_alterations[$key] + $element['translation'];
-    }
-
-    _webform_form_config_translation_add_form_alter_elements($element, $element_alterations);
-
-  }
-}
-
-/**
- * Validate callback; Validates and cleanups webform elements.
- */
-function _webform_form_config_translate_add_form_validate(&$form, FormStateInterface $form_state) {
-  if ($form_state::hasAnyErrors()) {
-    return;
-  }
-
-  $values = $form_state->getValues();
-
-  $config_name = $form_state->get('webform_config_name');
-  $source_elements = $form_state->get('webform_source_elements');
-  $submitted_translation_elements = Yaml::decode($values['translation']['config_names'][$config_name]['elements']);
-  $translation_elements = $source_elements;
-
-  // Remove all custom translation properties.
-  WebformElementHelper::merge($translation_elements, $submitted_translation_elements);
-
-  // Remove any translation property that has not been translated.
-  _webform_form_config_translate_add_form_filter_elements($translation_elements, $source_elements);
-
-  // Update webform value.
-  $values['translation']['config_names'][$config_name]['elements'] = ($translation_elements) ? Yaml::encode($translation_elements) : '';
-  $form_state->setValues($values);
-}
-
-/**
- * Merge element properties.
- *
- * @param array $translation_elements
- *   An array of elements.
- * @param array $source_elements
- *   An array of elements to be merged.
- */
-function _webform_form_config_translate_add_form_filter_elements(array &$translation_elements, array $source_elements) {
-  foreach ($translation_elements as $key => &$translation_element) {
-    if (!isset($source_elements[$key])) {
-      continue;
-    }
-    $source_element = $source_elements[$key];
-    if ($translation_element === $source_element) {
-      unset($translation_elements[$key]);
-    }
-    elseif (is_array($translation_element)) {
-      _webform_form_config_translate_add_form_filter_elements($translation_element, $source_element);
-      if (empty($translation_element)) {
-        unset($translation_elements[$key]);
-      }
-    }
-  }
-}
-=======
->>>>>>> dev
 
 /**
  * Implements hook_form_FORM_ID_alter() for config translation edit form.
@@ -172,65 +92,9 @@ function webform_lingotek_config_entity_document_upload(array &$source_data, Con
  * Implements hook_lingotek_config_entity_translation_presave().
  */
 function webform_lingotek_config_entity_translation_presave(ConfigEntityInterface &$translation, $langcode, &$data) {
-<<<<<<< HEAD
-  switch ($translation->getEntityTypeId()) {
-    case 'field_config':
-      // Convert webform default data associative array back to YAML string.
-      /** @var \Drupal\field\Entity\FieldConfig $translation */
-      if ($translation->getFieldStorageDefinition()->getType() === 'webform') {
-        foreach ($data as &$field_settings) {
-          _webform_lingotek_encode_tokens($field_settings);
-          foreach ($field_settings as $setting_name => $setting_value) {
-            if (preg_match('/\.default_data$/', $setting_name)) {
-              $field_settings[$setting_name] = $field_settings[$setting_name] ? Yaml::encode($field_settings[$setting_name]) : '';
-            }
-          }
-        }
-      }
-      break;
-
-    case 'webform';
-      _webform_lingotek_decode_tokens($data);
-
-      /** @var \Drupal\webform\WebformInterface $translation */
-      $translation->setElements($data['elements']);
-      $data['elements'] = Yaml::encode($data['elements']);
-      break;
-
-    case 'webform_options';
-    case 'webform_options_custom';
-      $options = $data['options'];
-      // If '_optgroups_' are defined we need to translate the optgroups.
-      if (isset($options['_optgroups_'])) {
-        // Get optgroup from options.
-        $optgroups = $options['_optgroups_'];
-        unset($options['_optgroups_']);
-
-        // Build translated optgroup options.
-        $optgroups_options = [];
-        foreach ($options as $option_value => $option_text) {
-          if (is_array($option_text)) {
-            $optgroups_options[$optgroups[$option_value]] = $option_text;
-          }
-          else {
-            $optgroup_options[$option_value] = $option_text;
-          }
-        }
-        // Replace options with optgroup options.
-        $options = $optgroups_options;
-      }
-
-      /** @var \Drupal\webform\WebformOptionsInterface $translation */
-      // Convert options associative array back to YAML string.
-      $translation->setOptions($options);
-      $data['options'] = Yaml::encode($options);
-      break;
-  }
-=======
   /** @var \Drupal\webform\WebformTranslationLingotekManagerInterface $translation_lingotek_manager */
   $translation_lingotek_manager = \Drupal::service('webform.translation_lingotek_manager');
   $translation_lingotek_manager->configEntityTranslationPresave($translation, $langcode, $data);
->>>>>>> dev
 }
 
 /**

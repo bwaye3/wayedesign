@@ -242,8 +242,6 @@ class WebformSettingsLimitUniqueTest extends WebformNodeBrowserTestBase {
 
     // Check that the delete submission link does not include the ?destination.
     $this->assertLinkByHref(base_path() . 'admin/structure/webform/manage/test_form_limit_user_unique/submission/' . $sid . '/delete');
-<<<<<<< HEAD
-=======
 
     /**************************************************************************/
 
@@ -257,7 +255,6 @@ class WebformSettingsLimitUniqueTest extends WebformNodeBrowserTestBase {
     $this->drupalGet('/webform/test_form_limit_user_unique');
     $this->assertNoFieldByName('name', 'John Adams');
     $this->assertRaw('Sorry… This form is closed to new submissions.');
->>>>>>> dev
   }
 
 }

@@ -5,13 +5,7 @@ namespace Drupal\webform\Plugin\WebformHandler;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\RedirectCommand;
-<<<<<<< HEAD
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-=======
-use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
->>>>>>> dev
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Serialization\Yaml;
@@ -112,23 +106,6 @@ class RemotePostWebformHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-<<<<<<< HEAD
-    $instance = new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('logger.factory'),
-      $container->get('config.factory'),
-      $container->get('entity_type.manager'),
-      $container->get('webform_submission.conditions_validator'),
-      $container->get('module_handler'),
-      $container->get('http_client'),
-      $container->get('webform.token_manager'),
-      $container->get('webform.message_manager'),
-      $container->get('plugin.manager.webform.element')
-    );
-
-=======
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->moduleHandler = $container->get('module_handler');
     $instance->httpClient = $container->get('http_client');
@@ -136,7 +113,6 @@ class RemotePostWebformHandler extends WebformHandlerBase {
     $instance->messageManager = $container->get('webform.message_manager');
     $instance->elementManager = $container->get('plugin.manager.webform.element');
     $instance->request = $container->get('request_stack')->getCurrentRequest();
->>>>>>> dev
     $instance->requestStack = $container->get('request_stack');
     $instance->kernel = $container->get('kernel');
     return $instance;

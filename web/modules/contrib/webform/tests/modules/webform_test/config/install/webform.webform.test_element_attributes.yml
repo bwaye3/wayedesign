@@ -22,10 +22,6 @@ elements: |
       one
       two
       three
-<<<<<<< HEAD
-      
-=======
->>>>>>> dev
     '#class__description': 'This is a custom class description.'
     '#style__description': 'This is a custom style description.'
     '#attributes__description': 'This is a custom attributes description.'

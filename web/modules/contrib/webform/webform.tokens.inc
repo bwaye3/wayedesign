@@ -82,11 +82,7 @@ function webform_token_info() {
     'description' => t('The URL that can used to update the webform submission. The webform must be configured to allow users to update a submission using a secure token.'),
     'type' => 'url',
   ];
-<<<<<<< HEAD
-  $webform_submission['delete-url'] = [
-=======
   $webform_submission['token-delete-url'] = [
->>>>>>> dev
     'name' => t('Delete (token) URL'),
     'description' => t('The URL that can used to delete the webform submission. The webform must be configured to allow users to delete a submission using a secure token.'),
     'type' => 'url',
@@ -547,17 +543,10 @@ function webform_tokens($type, $tokens, array $data, array $options, BubbleableM
           $replacements[$original] = $webform_submission->getSourceUrl()->toString();
           break;
 
-<<<<<<< HEAD
-        case 'view-url':
-        case 'update-url':
-        case 'delete-url':
-          $replacements[$original] = $webform_submission->getTokenUrl(str_replace('-url', '', $name))->toString();
-=======
         case 'token-view-url':
         case 'token-update-url':
         case 'token-delete-url':
           $replacements[$original] = $webform_submission->getTokenUrl(preg_replace('/^token-(view|update|delete)-url$/', '\1', $name))->toString();
->>>>>>> dev
           break;
 
         case 'token':
@@ -752,16 +741,6 @@ function webform_tokens($type, $tokens, array $data, array $options, BubbleableM
       $type = $submitted_to->getEntityType()->get('token_type') ?: $submitted_to->getEntityTypeId();
       $replacements += $token_service->generate($type, $submitted_to_tokens, [$type => $submitted_to], $options, $bubbleable_metadata);
     }
-<<<<<<< HEAD
-    foreach (['view-url', 'update-url', 'delete-url', 'source-url'] as $token) {
-      if ($url_tokens = $token_service->findWithPrefix($tokens, $token)) {
-        $url = NULL;
-        switch ($token) {
-          case 'view-url':
-          case 'update-url':
-          case 'delete-url':
-            $url = $webform_submission->getTokenUrl(str_replace('-url', '', $token));
-=======
     foreach (['token-view-url', 'token-update-url', 'token-delete-url', 'source-url'] as $token) {
       if ($url_tokens = $token_service->findWithPrefix($tokens, $token)) {
         $url = NULL;
@@ -770,7 +749,6 @@ function webform_tokens($type, $tokens, array $data, array $options, BubbleableM
           case 'token-update-url':
           case 'token-delete-url':
             $url = $webform_submission->getTokenUrl(preg_replace('/^token-(view|update|delete)-url$/', '\1', $token));
->>>>>>> dev
             break;
 
           case 'source-url':

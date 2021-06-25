@@ -465,8 +465,6 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
         ':input[name="settings[from_mail][other]"]' => ['value' => ['pattern' => ',']],
       ],
     ];
-<<<<<<< HEAD
-=======
 
     // Settings: Reply-to.
     $form['reply_to'] = [
@@ -477,7 +475,6 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
     ];
     $form['reply_to']['reply_to'] = $this->buildElement('reply_to', $this->t('Reply-to email'), $this->t('Reply-to email address'), FALSE, $mail_element_options, NULL, NULL, $other_element_email_options);
     $form['reply_to']['token_tree_link'] = $this->buildTokenTreeElement($token_types);
->>>>>>> dev
 
     // Message.
     $form['message'] = [

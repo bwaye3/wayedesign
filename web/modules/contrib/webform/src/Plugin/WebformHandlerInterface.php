@@ -20,11 +20,7 @@ use Drupal\webform\WebformSubmissionInterface;
  * @see \Drupal\webform\Plugin\WebformHandlerManagerInterface
  * @see plugin_api
  */
-<<<<<<< HEAD
-interface WebformHandlerInterface extends PluginInspectionInterface, ConfigurableInterface, ContainerFactoryPluginInterface, PluginFormInterface, WebformPluginSettingsInterface {
-=======
 interface WebformHandlerInterface extends PluginInspectionInterface, ConfigurableInterface, ContainerFactoryPluginInterface, PluginFormInterface, WebformEntityInjectionInterface, WebformPluginSettingsInterface {
->>>>>>> dev
 
   /**
    * Value indicating unlimited plugin instances are permitted.

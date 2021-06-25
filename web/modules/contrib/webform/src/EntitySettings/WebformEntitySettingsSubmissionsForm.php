@@ -290,30 +290,18 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
       'token_view' => [
         'title' => $this->t('Allow users to view a submission using a secure token'),
         'form_description' => $this->t("If checked users will be able to view a submission using the webform submission's URL appended with the submission's (secure) token.") . ' ' .
-<<<<<<< HEAD
-          $this->t("The 'tokenized' URL to view a submission will be available when viewing a submission's information and can be inserted into an email using the [webform_submission:view-url] token."),
-=======
           $this->t("The 'tokenized' URL to view a submission will be available when viewing a submission's information and can be inserted into an email using the [webform_submission:token-view-url] token."),
->>>>>>> dev
       ],
       'token_update' => [
         'title' => $this->t('Allow users to update a submission using a secure token'),
         'form_description' => $this->t("If checked users will be able to update a submission using the webform's URL appended with the submission's (secure) token.") . ' ' .
-<<<<<<< HEAD
-          $this->t("The 'tokenized' URL to update a submission will be available when viewing a submission's information and can be inserted into an email using the [webform_submission:update-url] token.") . ' ' .
-=======
           $this->t("The 'tokenized' URL to update a submission will be available when viewing a submission's information and can be inserted into an email using the [webform_submission:token-update-url] token.") . ' ' .
->>>>>>> dev
           $this->t('Only webforms that are open to new submissions can be updated using the secure token.'),
       ],
       'token_delete' => [
         'title' => $this->t('Allow users to delete a submission using a secure token'),
         'form_description' => $this->t("If checked users will be able to delete a submission using the webform's URL appended with the submission's (secure) token.") . ' ' .
-<<<<<<< HEAD
-          $this->t("The 'tokenized' URL to update a submission will be available when viewing a submission's information and can be inserted into an email using the [webform_submission:delete-url] token.") . ' ' .
-=======
           $this->t("The 'tokenized' URL to update a submission will be available when viewing a submission's information and can be inserted into an email using the [webform_submission:token-delete-url] token.") . ' ' .
->>>>>>> dev
           $this->t('Only webforms that are open to new submissions can be deleted using the secure token.'),
       ],
     ];

@@ -38,11 +38,7 @@
 }
 
 .cke_reset_all .cke_dialog_body * {
-<<<<<<< HEAD
-  font: 13px/1.538em BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-=======
   font: 0.8125rem/1.538em BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
->>>>>>> dev
 }
 
 /* Dialog's header. */

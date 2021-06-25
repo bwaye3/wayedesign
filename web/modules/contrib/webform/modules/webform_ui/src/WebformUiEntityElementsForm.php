@@ -15,13 +15,7 @@ use Drupal\webform\Form\WebformEntityAjaxFormTrait;
 use Drupal\webform\Plugin\WebformElement\WebformElement;
 use Drupal\webform\Plugin\WebformElement\WebformTable;
 use Drupal\webform\Utility\WebformDialogHelper;
-<<<<<<< HEAD
-use Drupal\webform\Plugin\WebformElementManagerInterface;
 use Drupal\webform\Utility\WebformElementHelper;
-use Drupal\webform\WebformEntityElementsValidatorInterface;
-=======
-use Drupal\webform\Utility\WebformElementHelper;
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

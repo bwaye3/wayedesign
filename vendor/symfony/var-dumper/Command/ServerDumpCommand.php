@@ -59,11 +59,7 @@ class ServerDumpCommand extends Command
 
         $this
             ->addOption('format', null, InputOption::VALUE_REQUIRED, sprintf('The output format (%s)', $availableFormats), 'cli')
-<<<<<<< HEAD
-            ->setDescription('Start a dump server that collects and displays dumps in a single place')
-=======
             ->setDescription(self::$defaultDescription)
->>>>>>> dev
             ->setHelp(<<<'EOF'
 <info>%command.name%</info> starts a dump server that collects and displays
 dumps in a single place for debugging you application:

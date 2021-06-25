@@ -20,13 +20,10 @@ elements: |
     '#type': webform_variant
     '#title': Variant
     '#variant': override
-<<<<<<< HEAD
-=======
   processed_text:
     '#type': processed_text
     '#text': '<p><strong>Some text</strong></p>'
     '#format': basic_html
->>>>>>> dev
   textfield:
     '#type': textfield
     '#title': 'Text field'

@@ -30,35 +30,10 @@ abstract class WebformEntityReferenceFormatterBase extends EntityReferenceFormat
 
   /**
    * The time service.
-<<<<<<< HEAD
    *
    * @var \Drupal\Component\Datetime\TimeInterface
    */
   protected $time;
-
-  /**
-   * WebformEntityReferenceFormatterBase constructor.
-=======
->>>>>>> dev
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
-   */
-<<<<<<< HEAD
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, RendererInterface $renderer, ConfigFactoryInterface $config_factory) {
-    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
-
-    $this->configFactory = $config_factory;
-    $this->renderer = $renderer;
-
-    // Make sure the time object is defined because the create method maybe
-    // overridden and we can't alter the constructor without breaking classes
-    // which extend the WebformEntityReferenceFormatterBase class.
-    // @todo Remove in Webform 6.x.
-    $this->time = \Drupal::service('datetime.time');
-  }
-=======
-  protected $time;
->>>>>>> dev
 
   /**
    * {@inheritdoc}

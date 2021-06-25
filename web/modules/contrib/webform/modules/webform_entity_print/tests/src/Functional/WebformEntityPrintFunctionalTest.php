@@ -3,10 +3,7 @@
 namespace Drupal\Tests\webform_entity_print\Functional;
 
 use Drupal\Component\Utility\Html;
-<<<<<<< HEAD
-=======
 use Drupal\Component\Utility\UrlHelper;
->>>>>>> dev
 use Drupal\Core\Session\AccountInterface;
 use Drupal\user\Entity\Role;
 use Drupal\webform\Entity\Webform;

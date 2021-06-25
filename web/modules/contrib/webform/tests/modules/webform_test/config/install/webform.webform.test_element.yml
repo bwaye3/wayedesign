@@ -63,10 +63,6 @@ elements: |
       '#default_value': |
         {textarea line 1}
         {textarea line 2}
-<<<<<<< HEAD
-        
-=======
->>>>>>> dev
     textfield:
       '#type': textfield
       '#title': textfield
@@ -240,10 +236,7 @@ elements: |
       '#default_value':
         - 1
         - 2
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
 css: ''
 javascript: ''
 settings:

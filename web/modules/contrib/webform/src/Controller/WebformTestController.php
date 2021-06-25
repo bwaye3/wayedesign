@@ -4,10 +4,6 @@ namespace Drupal\webform\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-<<<<<<< HEAD
-use Drupal\Core\Messenger\MessengerInterface;
-=======
->>>>>>> dev
 use Drupal\Core\Serialization\Yaml;
 use Drupal\webform\Plugin\WebformHandler\EmailWebformHandler;
 use Drupal\webform\WebformInterface;
@@ -36,16 +32,6 @@ class WebformTestController extends ControllerBase implements ContainerInjection
 
   /**
    * The webform entity reference manager.
-<<<<<<< HEAD
-   *
-   * @var \Drupal\webform\WebformEntityReferenceManagerInterface
-   */
-  protected $entityReferenceManager;
-
-  /**
-   * The webform submission generation service.
-=======
->>>>>>> dev
    *
    * @var \Drupal\webform\WebformEntityReferenceManagerInterface
    */
@@ -56,35 +42,17 @@ class WebformTestController extends ControllerBase implements ContainerInjection
    *
    * @var \Drupal\webform\WebformSubmissionGenerateInterface
    */
-<<<<<<< HEAD
-  public function __construct(MessengerInterface $messenger, WebformRequestInterface $request_handler, WebformSubmissionGenerateInterface $submission_generate) {
-    $this->messenger = $messenger;
-    $this->requestHandler = $request_handler;
-    $this->generate = $submission_generate;
-
-  }
-=======
   protected $generate;
->>>>>>> dev
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-<<<<<<< HEAD
-    $instance = new static(
-      $container->get('messenger'),
-      $container->get('webform.request'),
-      $container->get('webform_submission.generate')
-    );
-    $instance->entityReferenceManager = $container->get('webform.entity_reference_manager');
-=======
     $instance = parent::create($container);
     $instance->messenger = $container->get('messenger');
     $instance->requestHandler = $container->get('webform.request');
     $instance->entityReferenceManager = $container->get('webform.entity_reference_manager');
     $instance->generate = $container->get('webform_submission.generate');
->>>>>>> dev
     return $instance;
   }
 

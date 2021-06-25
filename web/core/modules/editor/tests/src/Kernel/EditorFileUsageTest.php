@@ -279,28 +279,6 @@ class EditorFileUsageTest extends EntityKernelTestBase {
       $this->assertSame(['editor' => ['node' => [1 => '2']]], $file_usage->listUsage($image_entity), 'The image ' . $image_paths[$key] . ' has 2 usages.');
     }
 
-    // Empty out the body and summary. The number of usages should decrease by
-    // one.
-    foreach ($original_values as $key => $original_value) {
-      $node->body[$key]->value = '';
-      $node->body[$key]->summary = '';
-    }
-    $node->save();
-    foreach ($image_entities as $key => $image_entity) {
-      $this->assertSame(['editor' => ['node' => [1 => '1']]], $file_usage->listUsage($image_entity), 'The image ' . $image_paths[$key] . ' has 1 usage.');
-    }
-
-    // Set the field of a custom field type that is a subclass of
-    // Drupal\text\Plugin\Field\FieldType\TextItemBase. The number of usages
-    // should increase by one.
-    foreach ($original_values as $key => $original_value) {
-      $node->description[$key]->value = $original_value;
-    }
-    $node->save();
-    foreach ($image_entities as $key => $image_entity) {
-      $this->assertSame(['editor' => ['node' => [1 => '2']]], $file_usage->listUsage($image_entity), 'The image ' . $image_paths[$key] . ' has 2 usages.');
-    }
-
     // Test editor_entity_delete().
     $node->delete();
     foreach ($image_entities as $key => $image_entity) {

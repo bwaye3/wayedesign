@@ -699,8 +699,6 @@ abstract class DateBase extends WebformElementBase {
     /** @var \Drupal\Core\Datetime\DateFormatterInterface $date_formatter */
     $date_formatter = \Drupal::service('date.formatter');
     return $date_formatter->format($timestamp ?: \Drupal::time()->getRequestTime(), 'custom', $custom_format);
-<<<<<<< HEAD
-=======
   }
 
   /**
@@ -715,7 +713,6 @@ abstract class DateBase extends WebformElementBase {
   protected function datePickerExists() {
     return (floatval(\Drupal::VERSION) < 9)
       || $this->moduleHandler->moduleExists('jquery_ui_datepicker');
->>>>>>> dev
   }
 
 }

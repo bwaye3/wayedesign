@@ -5,10 +5,6 @@ namespace Drupal\webform\Form;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-<<<<<<< HEAD
-use Drupal\webform\WebformRequestInterface;
-=======
->>>>>>> dev
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

@@ -5,11 +5,8 @@ namespace Drupal\KernelTests;
 use Drupal\Component\FileCache\FileCacheFactory;
 use Drupal\Core\Database\Database;
 use GuzzleHttp\Exception\GuzzleException;
-<<<<<<< HEAD
-=======
 use Drupal\Tests\StreamCapturer;
 use Drupal\user\Entity\Role;
->>>>>>> dev
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\visitor\vfsStreamStructureVisitor;
 use PHPUnit\Framework\SkippedTestError;

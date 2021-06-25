@@ -191,85 +191,6 @@ class WebformSubmissionForm extends ContentEntityForm {
    * @see \Drupal\webform\WebformSubmissionForm::buildForm
    */
   protected $bubbleableMetadata;
-<<<<<<< HEAD
-
-  /**
-   * Constructs a WebformSubmissionForm object.
-   *
-   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
-   *   The entity repository.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
-   * @param \Drupal\Core\Render\RendererInterface $renderer
-   *   The renderer service.
-   * @param \Drupal\Core\Path\AliasManagerInterface $alias_manager
-   *   The path alias manager.
-   * @param \Drupal\Core\Path\PathValidatorInterface $path_validator
-   *   The path validator.
-   * @param \Drupal\webform\WebformRequestInterface $request_handler
-   *   The webform request handler.
-   * @param \Drupal\webform\Plugin\WebformElementManagerInterface $element_manager
-   *   The webform element manager.
-   * @param \Drupal\webform\WebformThirdPartySettingsManagerInterface $third_party_settings_manager
-   *   The webform third party settings manager.
-   * @param \Drupal\webform\WebformMessageManagerInterface $message_manager
-   *   The webform message manager.
-   * @param \Drupal\webform\WebformTokenManagerInterface $token_manager
-   *   The webform token manager.
-   * @param \Drupal\webform\WebformSubmissionConditionsValidatorInterface $conditions_validator
-   *   The webform submission conditions (#states) validator.
-   * @param \Drupal\webform\WebformEntityReferenceManagerInterface $webform_entity_reference_manager
-   *   The webform entity reference manager.
-   * @param \Drupal\webform\WebformSubmissionGenerateInterface $submission_generate
-   *   The webform submission generation service.
-   * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $killSwitch
-   *   The page cache kill switch service.
-   * @param \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selection_manager
-   *   The selection plugin manager.
-   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
-   *   The entity field manager.
-   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
-   *   The form builder.
-   */
-  public function __construct(
-    EntityRepositoryInterface $entity_repository,
-    ConfigFactoryInterface $config_factory,
-    RendererInterface $renderer,
-    AliasManagerInterface $alias_manager,
-    PathValidatorInterface $path_validator,
-    WebformRequestInterface $request_handler,
-    WebformElementManagerInterface $element_manager,
-    WebformThirdPartySettingsManagerInterface $third_party_settings_manager,
-    WebformMessageManagerInterface $message_manager,
-    WebformTokenManagerInterface $token_manager,
-    WebformSubmissionConditionsValidatorInterface $conditions_validator,
-    WebformEntityReferenceManagerInterface $webform_entity_reference_manager,
-    WebformSubmissionGenerateInterface $submission_generate,
-    KillSwitch $killSwitch,
-    SelectionPluginManagerInterface $selection_manager,
-    EntityFieldManagerInterface $entity_field_manager,
-    FormBuilderInterface $form_builder
-  ) {
-    parent::__construct($entity_repository);
-    $this->configFactory = $config_factory;
-    $this->renderer = $renderer;
-    $this->requestHandler = $request_handler;
-    $this->aliasManager = $alias_manager;
-    $this->pathValidator = $path_validator;
-    $this->elementManager = $element_manager;
-    $this->thirdPartySettingsManager = $third_party_settings_manager;
-    $this->messageManager = $message_manager;
-    $this->tokenManager = $token_manager;
-    $this->conditionsValidator = $conditions_validator;
-    $this->webformEntityReferenceManager = $webform_entity_reference_manager;
-    $this->generate = $submission_generate;
-    $this->killSwitch = $killSwitch;
-    $this->selectionManager = $selection_manager;
-    $this->entityFieldManager = $entity_field_manager;
-    $this->formBuilder = $form_builder;
-  }
-=======
->>>>>>> dev
 
   /**
    * {@inheritdoc}
@@ -3062,29 +2983,6 @@ class WebformSubmissionForm extends ContentEntityForm {
   }
 
   /**
-<<<<<<< HEAD
-   * Get last completed webform submission for the current user.
-   *
-   * @param bool $completed
-   *   Flag to get last completed or draft submission.
-   *
-   * @return \Drupal\webform\WebformSubmissionInterface|null
-   *   The last completed webform submission for the current user.
-   *
-   * @deprecated Scheduled for removal in Webform 8.x-6.x
-   *   Use $this->getStorage()->getLastSubmission instead.
-   */
-  protected function getLastSubmission($completed = TRUE) {
-    $webform = $this->getWebform();
-    $source_entity = $this->getSourceEntity();
-    $account = $this->getEntity()->getOwner();
-    $options = ($completed) ? ['in_draft' => FALSE] : [];
-    return $this->getStorage()->getLastSubmission($webform, $source_entity, $account, $options);
-  }
-
-  /**
-=======
->>>>>>> dev
    * Get a webform submission's webform setting.
    *
    * @param string $name

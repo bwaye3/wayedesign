@@ -110,8 +110,6 @@ class ReflectionCaster
         } else {
             $a[$prefix.'allowsNull'] = $c->allowsNull();
         }
-<<<<<<< HEAD
-=======
 
         return $a;
     }
@@ -122,7 +120,6 @@ class ReflectionCaster
             'name' => 'getName',
             'arguments' => 'getArguments',
         ]);
->>>>>>> dev
 
         return $a;
     }
@@ -417,11 +414,7 @@ class ReflectionCaster
         }
     }
 
-<<<<<<< HEAD
-    private static function addMap(array &$a, $c, array $map, string $prefix = Caster::PREFIX_VIRTUAL)
-=======
     private static function addMap(array &$a, object $c, array $map, string $prefix = Caster::PREFIX_VIRTUAL)
->>>>>>> dev
     {
         foreach ($map as $k => $m) {
             if (\PHP_VERSION_ID >= 80000 && 'isDisabled' === $k) {

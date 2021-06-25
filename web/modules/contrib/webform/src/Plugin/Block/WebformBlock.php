@@ -7,7 +7,6 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\webform\Utility\WebformYaml;
 use Drupal\webform\WebformInterface;
@@ -53,53 +52,6 @@ class WebformBlock extends BlockBase implements ContainerFactoryPluginInterface 
   protected $tokenManager;
 
   /**
-<<<<<<< HEAD
-   * The route match.
-   *
-   * @var \Drupal\Core\Routing\RouteMatchInterface
-   */
-  protected $routeMatch;
-
-  /**
-   * Creates a WebformBlock instance.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
-   *   The request stack.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\webform\WebformTokenManagerInterface $token_manager
-   *   The webform token manager.
-   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
-   *   The current route match.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack, EntityTypeManagerInterface $entity_type_manager, WebformTokenManagerInterface $token_manager, RouteMatchInterface $route_match = NULL) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->requestStack = $request_stack;
-    $this->entityTypeManager = $entity_type_manager;
-    $this->tokenManager = $token_manager;
-    $this->routeMatch = $route_match ?: \Drupal::routeMatch();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('request_stack'),
-      $container->get('entity_type.manager'),
-      $container->get('webform.token_manager'),
-      $container->get('current_route_match')
-    );
-=======
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -109,7 +61,6 @@ class WebformBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->tokenManager = $container->get('webform.token_manager');
     return $instance;
->>>>>>> dev
   }
 
   /**

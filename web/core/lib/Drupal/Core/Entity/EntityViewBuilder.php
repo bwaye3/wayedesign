@@ -99,15 +99,7 @@ class EntityViewBuilder extends EntityHandlerBase implements EntityHandlerInterf
     $this->entityType = $entity_type;
     $this->entityRepository = $entity_repository;
     $this->languageManager = $language_manager;
-<<<<<<< HEAD
-    $this->themeRegistry = $theme_registry ?: \Drupal::service('theme.registry');
-    if (!$entity_display_repository) {
-      @trigger_error('Calling EntityViewBuilder::__construct() with the $entity_display_repository argument is supported in drupal:8.7.0 and will be required before drupal:9.0.0. See https://www.drupal.org/node/2549139.', E_USER_DEPRECATED);
-      $entity_display_repository = \Drupal::service('entity_display.repository');
-    }
-=======
     $this->themeRegistry = $theme_registry;
->>>>>>> dev
     $this->entityDisplayRepository = $entity_display_repository;
   }
 
