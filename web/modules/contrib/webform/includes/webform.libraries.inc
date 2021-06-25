@@ -61,13 +61,16 @@ function webform_library_info_alter(&$libraries, $extension) {
     /** @var \Drupal\webform\WebformLibrariesManagerInterface $libraries_manager */
     $libraries_manager = \Drupal::service('webform.libraries_manager');
     $tippyjs_library = $libraries_manager->getLibrary('tippyjs/6.x');
+    $libraries['libraries.tippyjs']['directory'] = 'tippyjs/6.x';
     $libraries['libraries.tippyjs']['version'] = $tippyjs_library['version'];
     $libraries['libraries.tippyjs']['cdn'] = ['/libraries/tippyjs/6.x/' => 'https://unpkg.com/tippy.js@' .  $tippyjs_library['version'] . '/dist/'];
     $libraries['libraries.tippyjs']['js'] = ['/libraries/tippyjs/6.x/' . basename($tippyjs_library['download_url']->toString()) => []];
   }
 
   // If webform date element in D8 use the old dependency on 'core/drupal.date'.
-  if (isset($libraries['webform.element.date']) && floatval(\Drupal::VERSION) < 9) {
+  if (isset($libraries['webform.element.date'])
+    && floatval(\Drupal::VERSION) < 9
+    && !\Drupal::moduleHandler()->moduleExists('jquery_ui_datepicker')) {
     $libraries['webform.element.date']['dependencies'] = ['core/drupal.date', 'core/drupalSettings'];
   }
 

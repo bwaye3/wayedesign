@@ -43,7 +43,7 @@
           toggleShowLabel: $form.data('toggle-show-label'),
           ajaxEffect: $form.data('ajax-effect'),
           ajaxSpeed: $form.data('ajax-speed'),
-          ajaxScrollTop: $form.data('ajax-scroll-top'),
+          ajaxScrollTop: $form.data('ajax-scroll-top')
         };
 
         var currentPage = $form.data('current-page');
@@ -81,6 +81,9 @@
         if ($invalidCards.length) {
           // Hide progress.
           $form.find('.webform-progress').hide();
+          // Hide next and previous and only show the submit button.
+          $previousButton.hide();
+          $nextButton.hide();
           // Show invalid cards and shake'em.
           $invalidCards
             .addClass('webform-card--error')
@@ -138,8 +141,8 @@
             // If input and the cursor is not at the end of the input, do not
             // trigger navigation.
             // @see https://stackoverflow.com/questions/21177489/selectionstart-selectionend-on-input-type-number-no-longer-allowed-in-chrome
-            if (event.target.value !== undefined
-              && event.target.selectionStart !== undefined
+            if (typeof event.target.value !== 'undefined'
+              && typeof event.target.selectionStart !== 'undefined'
               && event.target.selectionStart !== null) {
               if (event.target.value.length !== event.target.selectionStart) {
                 return;
@@ -373,7 +376,7 @@
           // Set properties.
           var properties = getCardsProgressProperties();
           for (var property in properties) {
-            if (propertie.hasOwnProperty(value)) {
+            if (properties.hasOwnProperty(property)) {
               var attribute = '[data-webform-progress-' + property + ']';
               var value = properties[property];
               $progress.find(attribute).html(value);

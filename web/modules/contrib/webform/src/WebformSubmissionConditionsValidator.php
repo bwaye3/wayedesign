@@ -163,6 +163,18 @@ class WebformSubmissionConditionsValidator implements WebformSubmissionCondition
             $element['#required'] = $result;
             break;
 
+          case 'readonly':
+
+            // Set custom readonly attribute and class.
+            // We can't use the custom #readonly property because it is
+            // processed before cross page targets.
+            // @see \Drupal\webform\Plugin\WebformElementBase::prepare
+            if ($result) {
+              $element['#attributes']['readonly'] = 'readonly';
+              $element['#wrapper_attributes']['class'][] = 'webform-readonly';
+            }
+            break;
+
           case 'disabled':
             $element['#disabled'] = $result;
             break;
@@ -221,7 +233,7 @@ class WebformSubmissionConditionsValidator implements WebformSubmissionCondition
     $cross_page_conditions = [];
     foreach ($conditions as $index => $value) {
       if (is_int($index) && is_array($value) && WebformArrayHelper::isSequential($value)) {
-        $cross_page_conditions[$index] = $this->replaceCrossPageTargets($conditions, $webform_submission, $targets, $form);
+        $cross_page_conditions[$index] = $this->replaceCrossPageTargets($value, $webform_submission, $targets, $form);
       }
       else {
         $cross_page_conditions[$index] = $value;
@@ -1066,12 +1078,12 @@ class WebformSubmissionConditionsValidator implements WebformSubmissionCondition
       }
       elseif (is_int($index)) {
         $selector = key($value);
+        $targets[$selector] = $selector;
       }
       else {
         $selector = $index;
+        $targets[$selector] = $selector;
       }
-
-      $targets[$selector] = $selector;
     }
   }
 

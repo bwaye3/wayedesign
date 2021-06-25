@@ -30,6 +30,7 @@ class WebformLikert extends FormElement {
       ],
       '#theme_wrappers' => ['form_element'],
       '#required' => FALSE,
+      '#required_error' => '',
       '#sticky' => TRUE,
       '#questions' => [],
       '#questions_description_display' => 'description',
@@ -151,6 +152,15 @@ class WebformLikert extends FormElement {
       }
 
       foreach ($answers as $answer_key => $answer) {
+        $answer_attributes = ['aria-labelledby' => $question_id];
+
+        // Add required attributes to input without setting the <label>
+        // to required.
+        if ($element['#required']) {
+          $answer_attributes['required'] ='required';
+          $answer_attributes['aria-required'] = 'true';
+        }
+
         $row[$answer_key] = [
           '#parents' => [$element['#name'], $question_key],
           '#type' => 'radio',
@@ -161,7 +171,7 @@ class WebformLikert extends FormElement {
           // value is NULL.
           // @see \Drupal\Core\Render\Element\Radio::preRenderRadio
           '#value' => ($value === NULL) ? FALSE : (string) $value,
-          '#attributes' => ['aria-labelledby' => $question_id],
+          '#attributes' => $answer_attributes,
         ];
 
         // Wrap title in span.webform-likert-label.visually-hidden
@@ -318,7 +328,14 @@ class WebformLikert extends FormElement {
     $value = $element['#value'];
     foreach ($element['#questions'] as $question_key => $question_title) {
       if (is_null($value[$question_key])) {
-        $form_state->setError($element['table'][$question_key]['likert_question'], t('@name field is required.', ['@name' => $question_title]));
+        $question_element =& $element['table'][$question_key]['likert_question'];
+        $t_args = ['@name' => $question_title];
+        if (!empty($element['#required_error'])) {
+          $form_state->setError($question_element, new FormattableMarkup($element['#required_error'], $t_args));
+        }
+        else {
+          $form_state->setError($question_element, t('@name field is required.', $t_args));
+        }
       }
     }
   }
