@@ -764,10 +764,7 @@ $settings['entity_update_batch_size'] = 50;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
+
 
 
 $databases['default']['default'] = array (
@@ -781,8 +778,13 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 
+$settings['install_profile'] = 'standard';
+
 $settings['trusted_host_patterns'] = [
   '^www\wayedesigngroup\.com$',
- '^wayedesigngroup\.com$',
+  '^wayedesigngroup\.com$',
 ];
-$settings['install_profile'] = 'standard';
+
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
