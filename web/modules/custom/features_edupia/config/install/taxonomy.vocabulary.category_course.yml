@@ -4,5 +4,4 @@ dependencies: {  }
 name: 'Category Course'
 vid: category_course
 description: 'Category for course '
-hierarchy: 0
 weight: 0

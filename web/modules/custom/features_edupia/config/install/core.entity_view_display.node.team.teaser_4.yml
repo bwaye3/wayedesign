@@ -8,16 +8,19 @@ dependencies:
     - field.field.node.team.field_team_description
     - field.field.node.team.field_team_education
     - field.field.node.team.field_team_email
+    - field.field.node.team.field_team_facebook
+    - field.field.node.team.field_team_google
     - field.field.node.team.field_team_image
+    - field.field.node.team.field_team_linkedin
     - field.field.node.team.field_team_name
+    - field.field.node.team.field_team_pinterest
     - field.field.node.team.field_team_position
     - field.field.node.team.field_team_quote
     - field.field.node.team.field_team_skills
-    - field.field.node.team.field_team_social
+    - field.field.node.team.field_team_twitter
     - image.style.height
     - node.type.team
   module:
-    - field_collection
     - image
     - user
 id: node.team.teaser_4
@@ -58,18 +61,16 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_team_social:
-    weight: 4
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: field_collection_items
-    region: content
 hidden:
   body: true
   field_team_description: true
   field_team_education: true
   field_team_email: true
+  field_team_facebook: true
+  field_team_google: true
+  field_team_linkedin: true
+  field_team_pinterest: true
   field_team_quote: true
   field_team_skills: true
+  field_team_twitter: true
   links: true
