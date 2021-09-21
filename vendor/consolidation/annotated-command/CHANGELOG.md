@@ -1,5 +1,17 @@
 # Change Log
 
+### 4.3.2 - 19 September 2021
+
+- Less parsing by ignoring Traits and IO.php (for Drush) (#237)
+
+### 4.3.1 - 29 August 2021
+
+- Fix bc break in 4.3.0. (#232)
+
+### 4.3.0 - 27 August 2021
+
+- Allow options to be passed in as regular method parameters. (#224)
+
 ### 4.2.4 - 10 December 2020
 
 - PHP 8
