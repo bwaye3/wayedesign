@@ -11,26 +11,26 @@ sites/*/example.sites.php
 /web/sites/*/default.settings.php
 
 # Ignore Drupal's file directory
-#/web/sites/*/files/
-#/web/sites/default/files/js/
+/web/sites/*/files/
+/web/sites/default/files/js/
 
 # gitignore template for Drupal 8 projects
 #
 # earlier versions of Drupal are tracked in `community/PHP/`
 
 # Ignore configuration files that may contain sensitive information
-#/web/sites/*/*settings*.php
-#/web/sites/*/*services*.yml
+/web/sites/*/*settings*.php
+/web/sites/*/*services*.yml
 /web/sites/development.services.yml
 /web/sites/default/settings.local.php
-#/web/sites/default/settings.php
+/web/sites/default/settings.php
 
 # Ignore paths that may contain user-generated content
-#/web/sites/*/files
-#/web/sites/*/public
-#/web/sites/*/private
-#/web/sites/*/files-public
-#/web/sites/*/files-private
+/web/sites/*/files
+/web/sites/*/public
+/web/sites/*/private
+/web/sites/*/files-public
+/web/sites/*/files-private
 
 
 # Ignore paths that may contain temporary files
@@ -74,9 +74,9 @@ sites/*/example.sites.php
 /web/README.txt
 
 # Ignore paths that contain user-generated content <set by MHA>.
-#sites/*/files
-#sites/*/private
-#files/*
+sites/*/files
+sites/*/private
+files/*
 
 
 # Note that services.local.yml is not loaded by default. If you would like
