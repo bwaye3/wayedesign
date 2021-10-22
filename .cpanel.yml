@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/wayedesigngroup/drupal
+    - export DEPLOYPATH=/home/wayedesigngroup/
     - /bin/cp -R * $DEPLOYPATH
 
 #deployment:

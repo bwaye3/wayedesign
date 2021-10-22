@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
+class ComposerStaticInit23a5a1b4fd2496ec4d076a2c943d894a
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -38,7 +38,7 @@ class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
         '786bf90caabc9e09b6ad4cc5ca8f0e30' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/normalize_uploaded_files.legacy.php',
         '751a5a3f463e4be759be31748b61737c' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/parse_cookie_header.legacy.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
-        '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/web/core/includes/bootstrap.inc',
+        '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/core/includes/bootstrap.inc',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '952683d815ff0a7bf322b93c0be7e4e4' => __DIR__ . '/..' . '/chi-teck/drupal-code-generator/src/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -363,8 +363,8 @@ class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
         ),
         'PHPStan\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpstan/phpstan-deprecation-rules/src',
-            1 => __DIR__ . '/..' . '/mglaman/phpstan-drupal/src',
+            0 => __DIR__ . '/..' . '/mglaman/phpstan-drupal/src',
+            1 => __DIR__ . '/..' . '/phpstan/phpstan-deprecation-rules/src',
         ),
         'MathieuViossat\\Util\\' => 
         array (
@@ -452,11 +452,11 @@ class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
         ),
         'Drupal\\Driver\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/web/drivers/lib/Drupal/Driver',
+            0 => __DIR__ . '/../..' . '/drivers/lib/Drupal/Driver',
         ),
         'Drupal\\Core\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core',
+            0 => __DIR__ . '/../..' . '/core/lib/Drupal/Core',
         ),
         'Drupal\\Composer\\Plugin\\Scaffold\\' => 
         array (
@@ -468,7 +468,7 @@ class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
         ),
         'Drupal\\Component\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/web/core/lib/Drupal/Component',
+            0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component',
         ),
         'DrupalCodeGenerator\\' => 
         array (
@@ -585,33 +585,33 @@ class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Drupal' => __DIR__ . '/../..' . '/web/core/lib/Drupal.php',
+        'Drupal' => __DIR__ . '/../..' . '/core/lib/Drupal.php',
         'DrupalFinder\\DrupalFinder' => __DIR__ . '/..' . '/webflo/drupal-finder/src/DrupalFinder.php',
-        'Drupal\\Component\\DependencyInjection\\Container' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Component/DependencyInjection/Container.php',
-        'Drupal\\Component\\DependencyInjection\\PhpArrayContainer' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Component/DependencyInjection/PhpArrayContainer.php',
-        'Drupal\\Component\\FileCache\\FileCacheFactory' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Component/FileCache/FileCacheFactory.php',
-        'Drupal\\Component\\Utility\\Timer' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Component/Utility/Timer.php',
-        'Drupal\\Component\\Utility\\Unicode' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Component/Utility/Unicode.php',
-        'Drupal\\Core\\Cache\\Cache' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/Cache.php',
-        'Drupal\\Core\\Cache\\CacheBackendInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/CacheBackendInterface.php',
-        'Drupal\\Core\\Cache\\CacheTagsChecksumInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/CacheTagsChecksumInterface.php',
-        'Drupal\\Core\\Cache\\CacheTagsChecksumTrait' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/CacheTagsChecksumTrait.php',
-        'Drupal\\Core\\Cache\\CacheTagsInvalidatorInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/CacheTagsInvalidatorInterface.php',
-        'Drupal\\Core\\Cache\\DatabaseBackend' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/DatabaseBackend.php',
-        'Drupal\\Core\\Cache\\DatabaseCacheTagsChecksum' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Cache/DatabaseCacheTagsChecksum.php',
-        'Drupal\\Core\\Database\\Connection' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/Connection.php',
-        'Drupal\\Core\\Database\\Database' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/Database.php',
-        'Drupal\\Core\\Database\\Driver\\mysql\\Connection' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/Driver/mysql/Connection.php',
-        'Drupal\\Core\\Database\\Driver\\pgsql\\Connection' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/Driver/pgsql/Connection.php',
-        'Drupal\\Core\\Database\\Driver\\sqlite\\Connection' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/Driver/sqlite/Connection.php',
-        'Drupal\\Core\\Database\\Statement' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/Statement.php',
-        'Drupal\\Core\\Database\\StatementInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Database/StatementInterface.php',
-        'Drupal\\Core\\DependencyInjection\\Container' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/DependencyInjection/Container.php',
-        'Drupal\\Core\\DrupalKernel' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/DrupalKernel.php',
-        'Drupal\\Core\\DrupalKernelInterface' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/DrupalKernelInterface.php',
-        'Drupal\\Core\\Http\\InputBag' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Http/InputBag.php',
-        'Drupal\\Core\\Installer\\InstallerRedirectTrait' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Installer/InstallerRedirectTrait.php',
-        'Drupal\\Core\\Site\\Settings' => __DIR__ . '/../..' . '/web/core/lib/Drupal/Core/Site/Settings.php',
+        'Drupal\\Component\\DependencyInjection\\Container' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/DependencyInjection/Container.php',
+        'Drupal\\Component\\DependencyInjection\\PhpArrayContainer' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/DependencyInjection/PhpArrayContainer.php',
+        'Drupal\\Component\\FileCache\\FileCacheFactory' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/FileCache/FileCacheFactory.php',
+        'Drupal\\Component\\Utility\\Timer' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Timer.php',
+        'Drupal\\Component\\Utility\\Unicode' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Unicode.php',
+        'Drupal\\Core\\Cache\\Cache' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/Cache.php',
+        'Drupal\\Core\\Cache\\CacheBackendInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/CacheBackendInterface.php',
+        'Drupal\\Core\\Cache\\CacheTagsChecksumInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/CacheTagsChecksumInterface.php',
+        'Drupal\\Core\\Cache\\CacheTagsChecksumTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/CacheTagsChecksumTrait.php',
+        'Drupal\\Core\\Cache\\CacheTagsInvalidatorInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/CacheTagsInvalidatorInterface.php',
+        'Drupal\\Core\\Cache\\DatabaseBackend' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/DatabaseBackend.php',
+        'Drupal\\Core\\Cache\\DatabaseCacheTagsChecksum' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Cache/DatabaseCacheTagsChecksum.php',
+        'Drupal\\Core\\Database\\Connection' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Connection.php',
+        'Drupal\\Core\\Database\\Database' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Database.php',
+        'Drupal\\Core\\Database\\Driver\\mysql\\Connection' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Driver/mysql/Connection.php',
+        'Drupal\\Core\\Database\\Driver\\pgsql\\Connection' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Driver/pgsql/Connection.php',
+        'Drupal\\Core\\Database\\Driver\\sqlite\\Connection' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Driver/sqlite/Connection.php',
+        'Drupal\\Core\\Database\\Statement' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/Statement.php',
+        'Drupal\\Core\\Database\\StatementInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Database/StatementInterface.php',
+        'Drupal\\Core\\DependencyInjection\\Container' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DependencyInjection/Container.php',
+        'Drupal\\Core\\DrupalKernel' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DrupalKernel.php',
+        'Drupal\\Core\\DrupalKernelInterface' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/DrupalKernelInterface.php',
+        'Drupal\\Core\\Http\\InputBag' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Http/InputBag.php',
+        'Drupal\\Core\\Installer\\InstallerRedirectTrait' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Installer/InstallerRedirectTrait.php',
+        'Drupal\\Core\\Site\\Settings' => __DIR__ . '/../..' . '/core/lib/Drupal/Core/Site/Settings.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DeprecatedException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
@@ -668,11 +668,11 @@ class ComposerStaticInit301051108e671d74c5402bbdeb1f95a5
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit301051108e671d74c5402bbdeb1f95a5::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit301051108e671d74c5402bbdeb1f95a5::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit301051108e671d74c5402bbdeb1f95a5::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInit301051108e671d74c5402bbdeb1f95a5::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInit301051108e671d74c5402bbdeb1f95a5::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit23a5a1b4fd2496ec4d076a2c943d894a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit23a5a1b4fd2496ec4d076a2c943d894a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit23a5a1b4fd2496ec4d076a2c943d894a::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit23a5a1b4fd2496ec4d076a2c943d894a::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit23a5a1b4fd2496ec4d076a2c943d894a::$classMap;
 
         }, null, ClassLoader::class);
     }

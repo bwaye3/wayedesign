@@ -365,6 +365,10 @@
                 "zend",
                 "zikula"
             ],
+            "support": {
+                "issues": "https://github.com/composer/installers/issues",
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -1016,6 +1020,10 @@
                 }
             ],
             "description": "Manage alias records for local and remote sites.",
+            "support": {
+                "issues": "https://github.com/consolidation/site-alias/issues",
+                "source": "https://github.com/consolidation/site-alias/tree/3.1.1"
+            },
             "install-path": "../consolidation/site-alias"
         },
         {
@@ -1325,6 +1333,10 @@
                 "iterators",
                 "php"
             ],
+            "support": {
+                "issues": "https://github.com/doctrine/collections/issues",
+                "source": "https://github.com/doctrine/collections/tree/1.6.8"
+            },
             "install-path": "../doctrine/collections"
         },
         {
@@ -1565,7 +1577,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/address"
             },
-            "install-path": "../../web/modules/contrib/address"
+            "install-path": "../../modules/contrib/address"
         },
         {
             "name": "drupal/admin_toolbar",
@@ -1592,7 +1604,7 @@
             "extra": {
                 "drupal": {
                     "version": "3.0.3",
-                    "datestamp": "1632322068",
+                    "datestamp": "1632322497",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1649,7 +1661,7 @@
                 "source": "https://git.drupalcode.org/project/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
             },
-            "install-path": "../../web/modules/contrib/admin_toolbar"
+            "install-path": "../../modules/contrib/admin_toolbar"
         },
         {
             "name": "drupal/back_to_top",
@@ -1712,7 +1724,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/back_to_top"
             },
-            "install-path": "../../web/modules/contrib/back_to_top"
+            "install-path": "../../modules/contrib/back_to_top"
         },
         {
             "name": "drupal/block_class",
@@ -1816,7 +1828,7 @@
                 "issues": "https://www.drupal.org/project/issues/block_class",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "install-path": "../../web/modules/contrib/block_class"
+            "install-path": "../../modules/contrib/block_class"
         },
         {
             "name": "drupal/block_visibility_groups",
@@ -1875,7 +1887,7 @@
                 "source": "https://git.drupalcode.org/project/block_visibility_groups",
                 "issues": "https://www.drupal.org/project/issues/block_visibility_groups"
             },
-            "install-path": "../../web/modules/contrib/block_visibility_groups"
+            "install-path": "../../modules/contrib/block_visibility_groups"
         },
         {
             "name": "drupal/captcha",
@@ -1950,7 +1962,7 @@
                 "source": "https://git.drupalcode.org/project/captcha",
                 "issues": "https://www.drupal.org/project/issues/captcha"
             },
-            "install-path": "../../web/modules/contrib/captcha"
+            "install-path": "../../modules/contrib/captcha"
         },
         {
             "name": "drupal/commerce",
@@ -2040,7 +2052,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce"
             },
-            "install-path": "../../web/modules/contrib/commerce"
+            "install-path": "../../modules/contrib/commerce"
         },
         {
             "name": "drupal/commerce_number_pattern",
@@ -2267,7 +2279,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce_paypal"
             },
-            "install-path": "../../web/modules/contrib/commerce_paypal"
+            "install-path": "../../modules/contrib/commerce_paypal"
         },
         {
             "name": "drupal/commerce_price",
@@ -2423,7 +2435,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/config_update"
             },
-            "install-path": "../../web/modules/contrib/config_update"
+            "install-path": "../../modules/contrib/config_update"
         },
         {
             "name": "drupal/contact_block",
@@ -2479,7 +2491,7 @@
                 "source": "https://git.drupalcode.org/project/contact_block",
                 "issues": "https://www.drupal.org/project/issues/contact_block"
             },
-            "install-path": "../../web/modules/contrib/contact_block"
+            "install-path": "../../modules/contrib/contact_block"
         },
         {
             "name": "drupal/core",
@@ -2736,7 +2748,7 @@
             "support": {
                 "source": "https://github.com/drupal/core/tree/9.2.7"
             },
-            "install-path": "../../web/core"
+            "install-path": "../../core"
         },
         {
             "name": "drupal/core-composer-scaffold",
@@ -3018,7 +3030,7 @@
                 "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
             },
-            "install-path": "../../web/modules/contrib/ctools"
+            "install-path": "../../modules/contrib/ctools"
         },
         {
             "name": "drupal/entity",
@@ -3085,7 +3097,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/entity"
             },
-            "install-path": "../../web/modules/contrib/entity"
+            "install-path": "../../modules/contrib/entity"
         },
         {
             "name": "drupal/entity_reference_revisions",
@@ -3147,7 +3159,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
             },
-            "install-path": "../../web/modules/contrib/entity_reference_revisions"
+            "install-path": "../../modules/contrib/entity_reference_revisions"
         },
         {
             "name": "drupal/eu_cookie_compliance",
@@ -3223,7 +3235,7 @@
                 "issues": "https://www.drupal.org/project/issues/eu_cookie_compliance?version=8.x",
                 "slack": "https://app.slack.com/client/T06GX3JTS/C012XBTH81E"
             },
-            "install-path": "../../web/modules/contrib/eu_cookie_compliance"
+            "install-path": "../../modules/contrib/eu_cookie_compliance"
         },
         {
             "name": "drupal/features",
@@ -3312,7 +3324,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/features"
             },
-            "install-path": "../../web/modules/contrib/features"
+            "install-path": "../../modules/contrib/features"
         },
         {
             "name": "drupal/field_formatter_class",
@@ -3374,7 +3386,7 @@
                 "source": "https://git.drupalcode.org/project/field_formatter_class",
                 "issues": "https://www.drupal.org/project/issues/field_formatter_class"
             },
-            "install-path": "../../web/modules/contrib/field_formatter_class"
+            "install-path": "../../modules/contrib/field_formatter_class"
         },
         {
             "name": "drupal/google_analytics",
@@ -3448,7 +3460,7 @@
                 "source": "https://git.drupal.org/project/google_analytics.git",
                 "issues": "https://www.drupal.org/project/issues/google_analytics"
             },
-            "install-path": "../../web/modules/contrib/google_analytics"
+            "install-path": "../../modules/contrib/google_analytics"
         },
         {
             "name": "drupal/honeypot",
@@ -3513,7 +3525,7 @@
                 "source": "https://git.drupalcode.org/project/honeypot",
                 "issues": "https://www.drupal.org/project/issues/honeypot"
             },
-            "install-path": "../../web/modules/contrib/honeypot"
+            "install-path": "../../modules/contrib/honeypot"
         },
         {
             "name": "drupal/image_url_formatter",
@@ -3560,7 +3572,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/image_url_formatter"
             },
-            "install-path": "../../web/modules/contrib/image_url_formatter"
+            "install-path": "../../modules/contrib/image_url_formatter"
         },
         {
             "name": "drupal/imce",
@@ -3613,7 +3625,7 @@
                 "source": "https://git.drupalcode.org/project/imce",
                 "issues": "https://www.drupal.org/project/issues/imce?version=8.x"
             },
-            "install-path": "../../web/modules/contrib/imce"
+            "install-path": "../../modules/contrib/imce"
         },
         {
             "name": "drupal/inline_entity_form",
@@ -3700,7 +3712,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/inline_entity_form"
             },
-            "install-path": "../../web/modules/contrib/inline_entity_form"
+            "install-path": "../../modules/contrib/inline_entity_form"
         },
         {
             "name": "drupal/ludwig",
@@ -3759,7 +3771,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ludwig"
             },
-            "install-path": "../../web/modules/contrib/ludwig"
+            "install-path": "../../modules/contrib/ludwig"
         },
         {
             "name": "drupal/metatag",
@@ -3826,7 +3838,7 @@
                 "issues": "https://www.drupal.org/project/issues/metatag",
                 "docs": "https://www.drupal.org/docs/8/modules/metatag"
             },
-            "install-path": "../../web/modules/contrib/metatag"
+            "install-path": "../../modules/contrib/metatag"
         },
         {
             "name": "drupal/paragraphs",
@@ -3910,7 +3922,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/paragraphs"
             },
-            "install-path": "../../web/modules/contrib/paragraphs"
+            "install-path": "../../modules/contrib/paragraphs"
         },
         {
             "name": "drupal/pathauto",
@@ -3981,7 +3993,7 @@
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
             },
-            "install-path": "../../web/modules/contrib/pathauto"
+            "install-path": "../../modules/contrib/pathauto"
         },
         {
             "name": "drupal/profile",
@@ -4052,7 +4064,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/profile"
             },
-            "install-path": "../../web/modules/contrib/profile"
+            "install-path": "../../modules/contrib/profile"
         },
         {
             "name": "drupal/recaptcha",
@@ -4138,7 +4150,7 @@
                 "source": "https://git.drupal.org/project/recaptcha.git",
                 "issues": "https://www.drupal.org/project/issues/recaptcha"
             },
-            "install-path": "../../web/modules/contrib/recaptcha"
+            "install-path": "../../modules/contrib/recaptcha"
         },
         {
             "name": "drupal/search_api",
@@ -4213,7 +4225,7 @@
                 "issues": "https://www.drupal.org/project/issues/search_api",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "install-path": "../../web/modules/contrib/search_api"
+            "install-path": "../../modules/contrib/search_api"
         },
         {
             "name": "drupal/simplenews",
@@ -4283,7 +4295,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/simplenews"
             },
-            "install-path": "../../web/modules/contrib/simplenews"
+            "install-path": "../../modules/contrib/simplenews"
         },
         {
             "name": "drupal/state_machine",
@@ -4383,7 +4395,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/state_machine"
             },
-            "install-path": "../../web/modules/contrib/state_machine"
+            "install-path": "../../modules/contrib/state_machine"
         },
         {
             "name": "drupal/token",
@@ -4455,7 +4467,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/token"
             },
-            "install-path": "../../web/modules/contrib/token"
+            "install-path": "../../modules/contrib/token"
         },
         {
             "name": "drupal/tvi",
@@ -4523,7 +4535,7 @@
                 "source": "http://cgit.drupalcode.org/tvi",
                 "issues": "http://drupal.org/project/issues/tvi"
             },
-            "install-path": "../../web/modules/contrib/tvi"
+            "install-path": "../../modules/contrib/tvi"
         },
         {
             "name": "drupal/upgrade_status",
@@ -4553,7 +4565,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-3.11",
-                    "datestamp": "1632233523",
+                    "datestamp": "1632233579",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4601,7 +4613,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/upgrade_status"
             },
-            "install-path": "../../web/modules/contrib/upgrade_status"
+            "install-path": "../../modules/contrib/upgrade_status"
         },
         {
             "name": "drupal/views_infinite_scroll",
@@ -4660,22 +4672,22 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/views_infinite_scroll"
             },
-            "install-path": "../../web/modules/contrib/views_infinite_scroll"
+            "install-path": "../../modules/contrib/views_infinite_scroll"
         },
         {
             "name": "drupal/webform",
-            "version": "6.0.4",
-            "version_normalized": "6.0.4.0",
+            "version": "6.0.5",
+            "version_normalized": "6.0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "6.0.4"
+                "reference": "6.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-6.0.4.zip",
-                "reference": "6.0.4",
-                "shasum": "8b87ffb19f980e9d77957dfb2d784a1a68619d57"
+                "url": "https://ftp.drupal.org/files/projects/webform-6.0.5.zip",
+                "reference": "6.0.5",
+                "shasum": "a925d604e3b4a29f5a688a8e84fdb3a93490f641"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -4723,8 +4735,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.0.4",
-                    "datestamp": "1624461046",
+                    "version": "6.0.5",
+                    "datestamp": "1629909787",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4774,7 +4786,7 @@
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
             },
-            "install-path": "../../web/modules/contrib/webform"
+            "install-path": "../../modules/contrib/webform"
         },
         {
             "name": "drupal/xmlsitemap",
@@ -4867,7 +4879,7 @@
                 "source": "https://git.drupalcode.org/project/xmlsitemap",
                 "issues": "http://drupal.org/project/issues/xmlsitemap"
             },
-            "install-path": "../../web/modules/contrib/xmlsitemap"
+            "install-path": "../../modules/contrib/xmlsitemap"
         },
         {
             "name": "drupal/yoast_seo",
@@ -4931,7 +4943,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/yoast_seo"
             },
-            "install-path": "../../web/modules/contrib/yoast_seo"
+            "install-path": "../../modules/contrib/yoast_seo"
         },
         {
             "name": "drush/drush",
@@ -5985,6 +5997,14 @@
                 "service-manager",
                 "servicemanager"
             ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-servicemanager/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-servicemanager/issues",
+                "rss": "https://github.com/laminas/laminas-servicemanager/releases.atom",
+                "source": "https://github.com/laminas/laminas-servicemanager"
+            },
             "funding": [
                 {
                     "url": "https://funding.communitybridge.org/projects/laminas-project",
@@ -6646,6 +6666,10 @@
                 "utility",
                 "validation"
             ],
+            "support": {
+                "issues": "https://github.com/nette/utils/issues",
+                "source": "https://github.com/nette/utils/tree/v3.2.5"
+            },
             "install-path": "../nette/utils"
         },
         {
@@ -6701,6 +6725,10 @@
                 "parser",
                 "php"
             ],
+            "support": {
+                "issues": "https://github.com/nikic/PHP-Parser/issues",
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.0"
+            },
             "install-path": "../nikic/php-parser"
         },
         {
@@ -6770,6 +6798,10 @@
                 "archive",
                 "tar"
             ],
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Archive_Tar",
+                "source": "https://github.com/pear/Archive_Tar"
+            },
             "funding": [
                 {
                     "url": "https://github.com/mrook",
@@ -6992,6 +7024,10 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
+            "support": {
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.99"
+            },
             "funding": [
                 {
                     "url": "https://github.com/ondrejmirtes",
@@ -8249,6 +8285,9 @@
             ],
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/filesystem/tree/v4.4.27"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -8311,6 +8350,9 @@
             ],
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/finder/tree/v5.3.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
