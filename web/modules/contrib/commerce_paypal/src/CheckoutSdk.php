@@ -221,6 +221,27 @@ class CheckoutSdk implements CheckoutSdkInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function verifyWebhookSignature(array $parameters) {
+    $required_keys = [
+      'auth_algo',
+      'cert_url',
+      'transmission_id',
+      'transmission_sig',
+      'transmission_time',
+      'webhook_id',
+      'webhook_event',
+    ];
+    foreach ($required_keys as $required_key) {
+      if (empty($parameters[$required_key])) {
+        throw new \InvalidArgumentException(sprintf('Missing required parameter key "%s".', $required_key));
+      }
+    }
+    return $this->client->post('/v1/notifications/verify-webhook-signature', ['json' => $parameters]);
+  }
+
+  /**
    * Prepare the order request parameters.
    *
    * @param \Drupal\commerce_order\Entity\OrderInterface $order
@@ -264,7 +285,7 @@ class CheckoutSdk implements CheckoutSdkInterface {
       // Skip included adjustments and the adjustment types we're handling
       // below such as "shipping" and "tax".
       if ($adjustment->isIncluded() ||
-        in_array($adjustment->getType(), ['tax', 'shipping', 'promotion'])) {
+        in_array($adjustment->getType(), ['tax', 'shipping', 'promotion', 'commerce_giftcard'])) {
         continue;
       }
       $item_total = $item_total ? $item_total->add($adjustment->getAmount()) : $adjustment->getAmount();
@@ -301,7 +322,7 @@ class CheckoutSdk implements CheckoutSdkInterface {
       ];
     }
 
-    $promotion_total = $this->getAdjustmentsTotal($adjustments, ['promotion']);
+    $promotion_total = $this->getAdjustmentsTotal($adjustments, ['promotion', 'commerce_giftcard']);
     if (!empty($promotion_total)) {
       $breakdown['discount'] = [
         'currency_code' => $promotion_total->getCurrencyCode(),
