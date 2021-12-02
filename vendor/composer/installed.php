@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2758389e5d3ad1a706d5f8a11b508c549105487e',
+        'reference' => '99fe1e4ee903fc7c8e7a3363d0f85b8276b79e7d',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -1063,7 +1063,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2758389e5d3ad1a706d5f8a11b508c549105487e',
+            'reference' => '99fe1e4ee903fc7c8e7a3363d0f85b8276b79e7d',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
@@ -1262,12 +1262,12 @@
             ),
         ),
         'drupal/webform' => array(
-            'pretty_version' => '6.0.4',
-            'version' => '6.0.4.0',
+            'pretty_version' => '6.1.1',
+            'version' => '6.1.1.0',
             'type' => 'drupal-module',
             'install_path' => __DIR__ . '/../../web/modules/contrib/webform',
             'aliases' => array(),
-            'reference' => '6.0.4',
+            'reference' => '6.1.1',
             'dev_requirement' => false,
         ),
         'drupal/workflows' => array(
@@ -1418,12 +1418,12 @@
             'dev_requirement' => false,
         ),
         'laminas/laminas-servicemanager' => array(
-            'pretty_version' => '3.10.0',
-            'version' => '3.10.0.0',
+            'pretty_version' => '3.7.0',
+            'version' => '3.7.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-servicemanager',
             'aliases' => array(),
-            'reference' => 'e52b985909e0940bf22d34f322eb3f48bbef6bd1',
+            'reference' => '2b0aee477fdbd3191af7c302b93dbc5fda0626f4',
             'dev_requirement' => false,
         ),
         'laminas/laminas-stdlib' => array(
@@ -2073,6 +2073,12 @@
             'dev_requirement' => false,
             'replaced' => array(
                 0 => '^2.12.0',
+            ),
+        ),
+        'zendframework/zend-servicemanager' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '^3.4.0',
             ),
         ),
         'zendframework/zend-stdlib' => array(

@@ -47,7 +47,7 @@
         "drupal/tvi": "^1.0@beta",
         "drupal/upgrade_status": "^3.7",
         "drupal/views_infinite_scroll": "^1.7",
-        "drupal/webform": "6.0.4",
+        "drupal/webform": "^6.1",
         "drupal/xmlsitemap": "^1.0@RC",
         "drupal/yoast_seo": "^1.5",
         "drush/drush": "^10.2"
@@ -58,6 +58,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "discard-changes": true,
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "7.3.33"
+        },
         "sort-packages": true
     },
     "extra": {
