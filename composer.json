@@ -30,7 +30,6 @@
         "drupal/core-project-message": "^9.0.0",
         "drupal/core-recommended": "^9.0.0",
         "drupal/ctools": "^3.4",
-        "drupal/eu_cookie_compliance": "^1.8",
         "drupal/features": "^3.8",
         "drupal/field_formatter_class": "^1.1",
         "drupal/google_analytics": "^3.1",
@@ -45,12 +44,11 @@
         "drupal/search_api": "^1.16",
         "drupal/simplenews": "^2.0@beta",
         "drupal/tvi": "^1.0@beta",
-        "drupal/upgrade_status": "^3.7",
         "drupal/views_infinite_scroll": "^1.7",
         "drupal/webform": "^6.1",
         "drupal/xmlsitemap": "^1.0@RC",
         "drupal/yoast_seo": "^1.5",
-        "drush/drush": "^10.2"
+        "drush/drush": "^10.6"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -69,6 +67,9 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/.htaccess": false
             }
         },
         "installer-paths": {
