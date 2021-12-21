@@ -30,6 +30,7 @@
         "drupal/core-project-message": "^9.0.0",
         "drupal/core-recommended": "^9.0.0",
         "drupal/ctools": "^3.4",
+        "drupal/draggableviews": "^2.0",
         "drupal/features": "^3.8",
         "drupal/field_formatter_class": "^1.1",
         "drupal/google_analytics": "^3.1",
