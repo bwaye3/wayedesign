@@ -25,7 +25,7 @@
 #}
 <!DOCTYPE html>
 <html{{ html_attributes }}>
-  <head> 
+  <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token|raw }}">
@@ -47,6 +47,9 @@
       {{ customize_styles|raw }}
     {% endif %}
 
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7128568847736003"
+              crossorigin="anonymous"></script>
+
   </head>
 
   {% set body_classes = [
@@ -66,12 +69,12 @@
     {{ page }}
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-    
+
     {% if addon_template %}
       <div class="permission-save-{{ save_customize_permission }}">
         {% include addon_template %}
-      </div>  
+      </div>
     {% endif %}
-    
+
   </body>
 </html>
