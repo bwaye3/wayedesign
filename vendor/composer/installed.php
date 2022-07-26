@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2a7e8942e536d0b95244716de04a08c3d6050461',
+        'reference' => 'f102830512cd9246b54bc241fdceb50787215996',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -206,12 +206,12 @@
             'dev_requirement' => false,
         ),
         'drupal/admin_toolbar' => array(
-            'pretty_version' => '3.1.0',
-            'version' => '3.1.0.0',
+            'pretty_version' => '3.1.1',
+            'version' => '3.1.1.0',
             'type' => 'drupal-module',
             'install_path' => __DIR__ . '/../../web/modules/contrib/admin_toolbar',
             'aliases' => array(),
-            'reference' => '3.1.0',
+            'reference' => '3.1.1',
             'dev_requirement' => false,
         ),
         'drupal/aggregator' => array(
@@ -1066,7 +1066,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2a7e8942e536d0b95244716de04a08c3d6050461',
+            'reference' => 'f102830512cd9246b54bc241fdceb50787215996',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
