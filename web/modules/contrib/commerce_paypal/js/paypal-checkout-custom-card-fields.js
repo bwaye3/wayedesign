@@ -190,7 +190,7 @@
         shippingInfo.address[name.substring(0, name.length - 1)] = $(this).val();
       });
 
-      var $addressSelector = $('select[name="shipping_information[shipping_profile][select_address]"', $form);
+      var $addressSelector = $('select[name="shipping_information[shipping_profile][select_address]"]', $form);
       if ($.isEmptyObject(shippingInfo.address) && ($addressSelector.length && $addressSelector.val() !== '_new')) {
         shippingInfo.profile = $addressSelector.val();
       }

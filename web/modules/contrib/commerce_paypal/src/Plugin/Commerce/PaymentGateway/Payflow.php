@@ -9,6 +9,8 @@ use Drupal\commerce_payment\Exception\HardDeclineException;
 use Drupal\commerce_payment\Exception\InvalidRequestException;
 use Drupal\commerce_payment\Exception\PaymentGatewayException;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OnsitePaymentGatewayBase;
+use Drupal\commerce_paypal\Event\PayflowRequestEvent;
+use Drupal\commerce_paypal\Event\PayPalEvents;
 use Drupal\commerce_price\Price;
 use Drupal\Core\Form\FormStateInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -55,12 +57,20 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
   protected $rounder;
 
   /**
+   * The event dispatcher.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->httpClient = $container->get('http_client');
     $instance->rounder = $container->get('commerce_price.rounder');
+    $instance->eventDispatcher = $container->get('event_dispatcher');
     return $instance;
   }
 
@@ -355,14 +365,19 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
     $this->validatePayment($payment, 'new');
 
     try {
-      $data = $this->executeTransaction([
+      $params = [
         'trxtype' => $capture ? 'S' : 'A',
         'amt' => $this->rounder->round($payment->getAmount())->getNumber(),
         'currencycode' => $payment->getAmount()->getCurrencyCode(),
         'origid' => $payment->getPaymentMethod()->getRemoteId(),
         'verbosity' => 'HIGH',
         // 'orderid' => $payment->getOrderId(),
-      ]);
+      ];
+
+      $event = new PayflowRequestEvent($payment->getOrder(), $params);
+      $this->eventDispatcher->dispatch(PayPalEvents::PAYFLOW_CREATE_PAYMENT, $event);
+
+      $data = $this->executeTransaction($event->getParams());
       if ($data['result'] !== '0') {
         throw new HardDeclineException('Could not charge the payment method. Response: ' . $data['respmsg'], $data['result']);
       }
