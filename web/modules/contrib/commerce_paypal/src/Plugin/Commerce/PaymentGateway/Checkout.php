@@ -9,22 +9,14 @@ use Drupal\commerce_payment\Entity\PaymentMethodInterface;
 use Drupal\commerce_payment\Exception\HardDeclineException;
 use Drupal\commerce_payment\Exception\PaymentGatewayException;
 use Drupal\commerce_payment\PaymentMethodStorageInterface;
-use Drupal\commerce_payment\PaymentMethodTypeManager;
-use Drupal\commerce_payment\PaymentTypeManager;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OffsitePaymentGatewayBase;
-use Drupal\commerce_paypal\CheckoutSdkFactoryInterface;
 use Drupal\commerce_price\Calculator;
 use Drupal\commerce_price\Price;
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Json;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\State\StateInterface;
 use Drupal\Core\Url;
 use Drupal\profile\Entity\ProfileInterface;
 use GuzzleHttp\Exception\BadResponseException;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,58 +77,15 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
   protected $state;
 
   /**
-   * Constructs a new Checkout object.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\commerce_payment\PaymentTypeManager $payment_type_manager
-   *   The payment type manager.
-   * @param \Drupal\commerce_payment\PaymentMethodTypeManager $payment_method_type_manager
-   *   The payment method type manager.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   The module handler.
-   * @param \Drupal\commerce_paypal\CheckoutSdkFactoryInterface $checkout_sdk_factory
-   *   The PayPal Checkout SDK factory.
-   * @param \Psr\Log\LoggerInterface $logger
-   *   The logger.
-   * @param \Drupal\Core\State\StateInterface $state
-   *   The state service.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PaymentTypeManager $payment_type_manager, PaymentMethodTypeManager $payment_method_type_manager, TimeInterface $time, ModuleHandlerInterface $module_handler, CheckoutSdkFactoryInterface $checkout_sdk_factory, LoggerInterface $logger, StateInterface $state) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $payment_type_manager, $payment_method_type_manager, $time);
-    $this->moduleHandler = $module_handler;
-    // Don't instantiate the client from there to be able to test the
-    // connectivity after updating the client_id & secret.
-    $this->checkoutSdkFactory = $checkout_sdk_factory;
-    $this->logger = $logger;
-    $this->state = $state;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('plugin.manager.commerce_payment_type'),
-      $container->get('plugin.manager.commerce_payment_method_type'),
-      $container->get('datetime.time'),
-      $container->get('module_handler'),
-      $container->get('commerce_paypal.checkout_sdk_factory'),
-      $container->get('logger.channel.commerce_paypal'),
-      $container->get('state')
-    );
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->moduleHandler = $container->get('module_handler');
+    $instance->checkoutSdkFactory = $container->get('commerce_paypal.checkout_sdk_factory');
+    $instance->logger = $container->get('logger.channel.commerce_paypal');
+    $instance->state = $container->get('state');
+    return $instance;
   }
 
   /**
@@ -156,6 +105,8 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
       'style' => [],
       'enable_on_cart' => TRUE,
       'collect_billing_information' => FALSE,
+      'webhook_id' => '',
+      'enable_credit_card_icons' => TRUE,
     ] + parent::defaultConfiguration();
   }
 
@@ -223,6 +174,12 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
       '#default_value' => $this->configuration['enable_on_cart'],
       '#states' => $spb_states,
     ];
+    $form['webhook_id'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Webhook ID'),
+      '#description' => $this->t('Required value when using Webhooks, used to verify the webhook signature.'),
+      '#default_value' => $this->configuration['webhook_id'],
+    ];
     $form['intent'] = [
       '#type' => 'radios',
       '#title' => $this->t('Transaction type'),
@@ -243,6 +200,7 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
         'sepa' => $this->t('SEPA-Lastschrift'),
         'sofort' => $this->t('Sofort'),
         'mybank' => $this->t('MyBank'),
+        'giropay' => $this->t('Giropay'),
       ],
       '#default_value' => $this->configuration['disable_funding'],
       '#states' => $spb_states,
@@ -287,6 +245,12 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
       '#default_value' => $this->configuration['update_shipping_profile'],
       '#access' => $shipping_enabled,
       '#states' => $spb_states,
+    ];
+    $form['enable_credit_card_icons'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Credit Card Icons'),
+      '#description' => $this->t('Enabling this setting will display credit card icons in the payment section during checkout.'),
+      '#default_value' => $this->configuration['enable_credit_card_icons'],
     ];
     $form['customize_buttons'] = [
       '#type' => 'checkbox',
@@ -349,6 +313,7 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
       '#options' => [
         'paypal' => $this->t('Displays the PayPal logo (Default)'),
         'checkout' => $this->t('Displays the PayPal Checkout button'),
+        'buynow' => $this->t('Displays the PayPal Buy Now button'),
         'pay' => $this->t('Displays the Pay With PayPal button'),
       ],
       '#default_value' => $this->configuration['style']['label'],
@@ -415,6 +380,8 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
       'update_billing_profile',
       'update_shipping_profile',
       'enable_on_cart',
+      'webhook_id',
+      'enable_credit_card_icons',
     ];
 
     // Only save the style settings if the customize buttons checkbox is checked.
@@ -654,6 +621,136 @@ class Checkout extends OffsitePaymentGatewayBase implements CheckoutInterface {
     $payment->setRemoteState($response['status']);
     $payment->setRefundedAmount($new_refunded_amount);
     $payment->save();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function onNotify(Request $request) {
+    // Reacts to Webhook events.
+    $request_body = Json::decode($request->getContent());
+    $this->logger->debug('Incoming webhook request: <pre>@data</pre>', [
+      '@data' => print_r($request_body, TRUE),
+    ]);
+    $supported_events = [
+      'PAYMENT.AUTHORIZATION.VOIDED',
+      'PAYMENT.CAPTURE.COMPLETED',
+      'PAYMENT.CAPTURE.REFUNDED',
+      'PAYMENT.CAPTURE.PENDING',
+      'PAYMENT.CAPTURE.DENIED',
+    ];
+
+    // Ignore unsupported events.
+    if (!isset($request_body['event_type']) ||
+      !in_array($request_body['event_type'], $supported_events)) {
+      return;
+    }
+
+    try {
+      $sdk = $this->checkoutSdkFactory->get($this->configuration);
+      $parameters = [
+        'auth_algo' => $request->headers->get('PAYPAL-AUTH-ALGO'),
+        'cert_url' => $request->headers->get('PAYPAL-CERT-URL'),
+        'transmission_id' => $request->headers->get('PAYPAL-TRANSMISSION-ID'),
+        'transmission_sig' => $request->headers->get('PAYPAL-TRANSMISSION-SIG'),
+        'transmission_time' => $request->headers->get('PAYPAL-TRANSMISSION-TIME'),
+        'webhook_id' => $this->configuration['webhook_id'],
+        'webhook_event' => $request_body,
+      ];
+      $signature_request = $sdk->verifyWebhookSignature($parameters);
+      $response = Json::decode($signature_request->getBody());
+
+      // If the webhook signature could not be successfully verified, stop here.
+      if (strtolower($response['verification_status']) !== 'success') {
+        $this->logger->error('An error occurred while trying to verify the webhook signature: <pre>@response</pre>', [
+          '@response' => print_r($response, TRUE),
+        ]);
+        return;
+      }
+      // Unfortunately, we need to use the "custom_id" (i.e the order_id) for
+      // retrieving the payment associated to this webhook event since the
+      // resource id might differ from our "remote_id".
+      $order_id = $request_body['resource']['custom_id'];
+      /** @var \Drupal\commerce_payment\PaymentStorageInterface $payment_storage */
+      $payment_storage = $this->entityTypeManager->getStorage('commerce_payment');
+      // Note that we don't use the loadMultipleByOrder() method on the payment
+      // storage since we don't actually need to load the order.
+      // This assumes the last payment is the right one.
+      $payment_ids = $payment_storage->getQuery()
+        ->condition('order_id', $order_id)
+        ->accessCheck(FALSE)
+        ->sort('payment_id', 'DESC')
+        ->range(0, 1)
+        ->execute();
+
+      if (!$payment_ids) {
+        $this->logger->error('Could not find a payment transaction in Drupal for the order ID @order_id.', [
+          '@order_id' => $order_id,
+        ]);
+        return;
+      }
+      $payment = $payment_storage->load(reset($payment_ids));
+      $amount = Price::fromArray([
+        'number' => $request_body['resource']['amount']['value'],
+        'currency_code' => $request_body['resource']['amount']['currency_code'],
+      ]);
+      // Synchronize the remote ID and remote state.
+      $payment->setRemoteId($request_body['resource']['id']);
+      $payment->setRemoteState($request_body['resource']['status']);
+
+      switch ($request_body['event_type']) {
+        case 'PAYMENT.AUTHORIZATION.VOIDED':
+          if ($payment->getState()->getId() !== 'authorization_voided') {
+            $payment->setState('authorization_voided');
+            $payment->save();
+          }
+          break;
+
+        case 'PAYMENT.CAPTURE.DENIED':
+          if ($payment->getState()->getId() !== 'authorization_voided') {
+            $payment->setState('capture_denied');
+            $payment->save();
+          }
+          break;
+
+        case 'PAYMENT.CAPTURE.COMPLETED':
+          // Ignore completed payments.
+          if ($payment->getState()->getId() !== 'completed' ||
+            $amount->lessThan($payment->getAmount())) {
+            $payment->setAmount($amount);
+            $payment->setState('completed');
+            $payment->save();
+          }
+          break;
+
+        case 'PAYMENT.CAPTURE.REFUNDED':
+          if ($amount->lessThan($payment->getAmount())) {
+            $payment->setState('partially_refunded');
+          }
+          else {
+            $payment->setState('refunded');
+          }
+          if (!$payment->getRefundedAmount() ||
+            !$payment->getRefundedAmount()->equals($amount)) {
+            $payment->setRefundedAmount($amount);
+            $payment->save();
+          }
+          break;
+
+        case 'PAYMENT.CAPTURE.PENDING':
+          if ($payment->getState()->getId() !== 'pending') {
+            $payment->setAmount($amount);
+            $payment->setState('pending');
+            $payment->save();
+          }
+          break;
+      }
+    }
+    catch (BadResponseException $exception) {
+      $this->logger->error('An error occurred while trying to verify the webhook signature: @error', [
+        '@error' => $exception->getMessage(),
+      ]);
+    }
   }
 
   /**

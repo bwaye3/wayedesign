@@ -126,13 +126,13 @@
       waitForSdk();
     },
     addLoader: function() {
-      var $background = $('<div id="paypal-background-overlay"></div>');
+      var $background = $('<div class="paypal-background-overlay"></div>');
       var $loader = $('<div class="paypal-background-overlay-loader"></div>');
       $background.append($loader);
       $('body').append($background);
     },
     removeLoader: function() {
-      $('body').remove('#paypal-background-overlay');
+      $('body').remove('.paypal-background-overlay');
     },
     extractBillingInfo: function ($form) {
       var billingInfo = {
@@ -190,7 +190,7 @@
         shippingInfo.address[name.substring(0, name.length - 1)] = $(this).val();
       });
 
-      var $addressSelector = $('select[name="shipping_information[shipping_profile][select_address]"', $form);
+      var $addressSelector = $('select[name="shipping_information[shipping_profile][select_address]"]', $form);
       if ($.isEmptyObject(shippingInfo.address) && ($addressSelector.length && $addressSelector.val() !== '_new')) {
         shippingInfo.profile = $addressSelector.val();
       }

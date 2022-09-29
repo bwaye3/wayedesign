@@ -19,7 +19,7 @@ class IPNHandlerTest extends OrderKernelTestBase implements ServiceModifierInter
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'commerce_paypal',
   ];
 
@@ -33,7 +33,7 @@ class IPNHandlerTest extends OrderKernelTestBase implements ServiceModifierInter
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->handler = $this->container->get('commerce_paypal.ipn_handler');
   }

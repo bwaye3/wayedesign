@@ -21,7 +21,7 @@ class PromotionTest extends CommerceWebDriverTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'block',
     'path',
     'commerce_product',
@@ -66,6 +66,7 @@ class PromotionTest extends CommerceWebDriverTestBase {
   protected function getAdministratorPermissions() {
     return array_merge([
       'administer commerce_promotion',
+      'access commerce_promotion overview',
     ], parent::getAdministratorPermissions());
   }
 
@@ -127,7 +128,7 @@ class PromotionTest extends CommerceWebDriverTestBase {
     $this->setRawFieldValue('start_date[0][value][time]', '10:30:00');
     $this->submitForm([], t('Save'));
     $this->assertSession()->pageTextContains("Saved the $name promotion.");
-    $rows = $this->getSession()->getPage()->findAll('xpath', '//table/tbody/tr/td[text()="' . $name . '"]');
+    $rows = $this->getSession()->getPage()->findAll('xpath', "//table/tbody/tr/td[text()[contains(., '$name')]]");
     $this->assertCount(1, $rows);
 
     /** @var \Drupal\commerce_promotion\Entity\PromotionInterface $promotion */
@@ -260,7 +261,7 @@ class PromotionTest extends CommerceWebDriverTestBase {
     $this->submitForm($edit, t('Save'));
     $this->assertSession()->pageTextContains("Saved the $name promotion.");
 
-    $rows = $this->getSession()->getPage()->findAll('xpath', '//table/tbody/tr/td[text()="' . $name . '"]');
+    $rows = $this->getSession()->getPage()->findAll('xpath', "//table/tbody/tr/td[text()[contains(., '$name')]]");
     $this->assertCount(1, $rows);
     /** @var \Drupal\commerce_promotion\Entity\PromotionInterface $promotion */
     $promotion = Promotion::load(1);
@@ -452,28 +453,6 @@ class PromotionTest extends CommerceWebDriverTestBase {
   }
 
   /**
-   * Tests viewing the admin/commerce/promotions page.
-   */
-  public function testAdminPromotions() {
-    /** @var \Drupal\commerce_promotion\Entity\PromotionInterface $promotion */
-    $promotion = $this->createEntity('commerce_promotion', [
-      'name' => $this->randomMachineName(8),
-    ]);
-    $this->drupalGet('admin/commerce/promotions');
-    $this->assertNotEmpty($this->getSession()->getPage()->hasLink('Add promotion'));
-    $this->assertSession()->pageTextNotContains('There are no enabled promotions yet.');
-    $this->assertSession()->pageTextContains('There are no disabled promotions.');
-    $this->assertTrue($this->getSession()->getPage()->hasLink('Disable'));
-    $this->assertFalse($this->getSession()->getPage()->hasLink('Enable'));
-    $this->assertTrue($this->getSession()->getPage()->hasLink('Delete'));
-    $this->drupalGet($promotion->toUrl('disable-form'));
-    $this->submitForm([], t('Disable'));
-    $this->assertSession()->pageTextContains('There are no enabled promotions yet.');
-    $this->assertSession()->pageTextNotContains('There are no disabled promotions.');
-    $this->assertTrue($this->getSession()->getPage()->hasLink('Enable'));
-  }
-
-  /**
    * Tests creating a combination offer promotion.
    */
   public function testCombinationOffer() {
@@ -520,6 +499,7 @@ class PromotionTest extends CommerceWebDriverTestBase {
       'display_inclusive' => TRUE,
       'percentage' => '0.1',
       'conditions' => [],
+      'operator' => 'OR',
     ], $configuration['offers'][0]['target_plugin_configuration']);
     $this->assertEquals('order_percentage_off', $configuration['offers'][1]['target_plugin_id']);
     $this->assertEquals(['percentage' => '0.1'], $configuration['offers'][1]['target_plugin_configuration']);

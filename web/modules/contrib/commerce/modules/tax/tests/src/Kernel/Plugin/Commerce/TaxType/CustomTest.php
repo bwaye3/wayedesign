@@ -37,7 +37,7 @@ class CustomTest extends OrderKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'commerce_tax',
   ];
 
@@ -136,13 +136,13 @@ class CustomTest extends OrderKernelTestBase {
     $this->assertCount(1, $order->collectAdjustments());
 
     // Serbian store and US customer.
-    $order = $this->buildOrder('US', 'RS');
+    $order = $this->buildOrder('US', 'RS', ['RS']);
     $this->assertTrue($plugin->applies($order));
     $plugin->apply($order);
     $this->assertCount(0, $order->collectAdjustments());
 
     // Serbian store and customer.
-    $order = $this->buildOrder('RS', 'RS');
+    $order = $this->buildOrder('RS', 'RS', ['RS']);
     $this->assertTrue($plugin->applies($order));
     $plugin->apply($order);
     $this->assertCount(1, $order->collectAdjustments());

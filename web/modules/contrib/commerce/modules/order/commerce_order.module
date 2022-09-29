@@ -116,13 +116,13 @@ function commerce_order_field_formatter_info_alter(array &$info) {
 }
 
 /**
- * Implements hook_field_widget_form_alter().
+ * Implements hook_field_widget_single_element_form_alter().
  *
  * - Changes the label of the purchased_entity field to the label of the
  *   target type (e.g. 'Product variation').
  * - Forbids editing the purchased_entity once the order item is no longer new.
  */
-function commerce_order_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+function commerce_order_field_widget_single_element_form_alter(&$element, FormStateInterface $form_state, $context) {
   $field_definition = $context['items']->getFieldDefinition();
   $field_name = $field_definition->getName();
   $entity_type = $field_definition->getTargetEntityTypeId();
@@ -228,7 +228,7 @@ function commerce_order_entity_type_build(array &$entity_types) {
  * Implements hook_entity_type_alter().
  */
 function commerce_order_entity_type_alter(array &$entity_types) {
-  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
   // During tests, always have order versioning throw an exception.
   if (drupal_valid_test_ua()) {
     $entity_types['commerce_order']->set('log_version_mismatch', FALSE);
@@ -429,10 +429,19 @@ function commerce_order_jsonapi_commerce_order_filter_access(EntityTypeInterface
  * Implements hook_theme_registry_alter().
  */
 function commerce_order_theme_registry_alter(&$theme_registry) {
-  $theme_registry['commerce_price_calculated']['path'] = drupal_get_path('module', 'commerce_order') . '/templates';
   $theme_registry['commerce_price_calculated']['variables'] += [
     'result' => NULL,
     'base_price' => NULL,
     'adjustments' => [],
   ];
+}
+
+/**
+ * Implements hook_field_group_content_element_keys_alter().
+ *
+ * Allow orders to render fields groups defined from Fields UI.
+ */
+function commerce_order_field_group_content_element_keys_alter(&$keys) {
+  $keys['commerce_order'] = 'order';
+  $keys['commerce_order_item'] = 'order_item';
 }

@@ -106,13 +106,22 @@ class ProductVariationTitleWidget extends ProductVariationWidgetBase implements 
       '#wrapper_id' => $wrapper_id,
       '#prefix' => '<div id="' . $wrapper_id . '">',
       '#suffix' => '</div>',
+      '#attached' => [
+        'library' => [
+          'commerce_product/update_product_url',
+        ],
+      ],
     ];
-    $parents = array_merge($element['#field_parents'], [$items->getName(), $delta]);
-    $user_input = (array) NestedArray::getValue($form_state->getUserInput(), $parents);
-    if (!empty($user_input)) {
+    // If an operation caused the form to rebuild, select the variation from
+    // the user's current input.
+    $selected_variation = NULL;
+    if ($form_state->isRebuilding()) {
+      $parents = array_merge($element['#field_parents'], [$items->getName(), $delta]);
+      $user_input = (array) NestedArray::getValue($form_state->getUserInput(), $parents);
       $selected_variation = $this->selectVariationFromUserInput($variations, $user_input);
     }
-    else {
+    // Otherwise, fallback to the default.
+    if (!$selected_variation) {
       $selected_variation = $this->getDefaultVariation($product, $variations);
     }
 
@@ -133,6 +142,8 @@ class ProductVariationTitleWidget extends ProductVariationWidgetBase implements 
       '#ajax' => [
         'callback' => [get_class($this), 'ajaxRefresh'],
         'wrapper' => $form['#wrapper_id'],
+        // Prevent a jump to the top of the page.
+        'disable-refocus' => TRUE,
       ],
     ];
     if ($this->getSetting('label_display') == FALSE) {
@@ -155,7 +166,7 @@ class ProductVariationTitleWidget extends ProductVariationWidgetBase implements 
    */
   protected function selectVariationFromUserInput(array $variations, array $user_input) {
     $current_variation = NULL;
-    if (!empty($user_input['variation']) && $variations[$user_input['variation']]) {
+    if (!empty($user_input['variation']) && isset($variations[$user_input['variation']])) {
       $current_variation = $variations[$user_input['variation']];
     }
 

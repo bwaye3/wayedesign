@@ -6,7 +6,6 @@ use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_product\Entity\ProductAttribute;
 use Drupal\commerce_product\Entity\ProductType;
 use Drupal\commerce_product\Entity\ProductVariationType;
-use Drupal\views\Entity\View;
 
 /**
  * Tests multiple cart page with different variation types.
@@ -22,7 +21,7 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'dynamic_page_cache',
     'page_cache',
     'commerce_cart_test',
@@ -51,6 +50,17 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
     $this->createProductAndVariationType('color_sizes', 'Colors and Sizes');
     $this->createProductAndVariationType('colors', 'Colors');
     $this->createProductAndVariationType('sizes', 'Sizes');
+    // Create a product type referencing multiple variation types.
+    $product_type = ProductType::create([
+      'id' => 'multiple',
+      'label' => 'Product type referencing multiple variation types',
+      'variationTypes' => [
+        'colors',
+        'color_sizes',
+        'sizes',
+      ],
+    ]);
+    $product_type->save();
 
     // Create the attributes.
     $color_attribute = ProductAttribute::create([
@@ -79,18 +89,6 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
       $this->sizeAttributes[$key] = $this->createAttributeValue($size_attribute->id(), $value);
     }
 
-    // The error seems to occur when the variation with one attribute is first.
-    // So replace the title sort with a product_id one. Otherwise if the first
-    // product has both attributes, all seems to be fine.
-    $view = View::load('test_multiple_cart_forms');
-    $display =& $view->getDisplay('default');
-    $display['display_options']['sorts']['product_id'] = $display['display_options']['sorts']['title'];
-    $display['display_options']['sorts']['product_id']['id'] = 'product_id';
-    $display['display_options']['sorts']['product_id']['field'] = 'product_id';
-    $display['display_options']['sorts']['product_id']['entity_field'] = 'product_id';
-    unset($display['display_options']['sorts']['title']);
-    $view->save();
-
     // Create products.
     $product_matrix = [
       'My Colors FIRST' => [
@@ -104,15 +102,42 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
       'My Colors and Sizes FIRST' => [
         'type' => 'color_sizes',
         'variations' => [
-          ['attribute_color' => $this->colorAttributes['red']->id(), 'attribute_size' => $this->sizeAttributes['small']->id()],
-          ['attribute_color' => $this->colorAttributes['red']->id(), 'attribute_size' => $this->sizeAttributes['medium']->id()],
-          ['attribute_color' => $this->colorAttributes['red']->id(), 'attribute_size' => $this->sizeAttributes['large']->id()],
-          ['attribute_color' => $this->colorAttributes['green']->id(), 'attribute_size' => $this->sizeAttributes['small']->id()],
-          ['attribute_color' => $this->colorAttributes['green']->id(), 'attribute_size' => $this->sizeAttributes['medium']->id()],
-          ['attribute_color' => $this->colorAttributes['green']->id(), 'attribute_size' => $this->sizeAttributes['large']->id()],
-          ['attribute_color' => $this->colorAttributes['blue']->id(), 'attribute_size' => $this->sizeAttributes['small']->id()],
-          ['attribute_color' => $this->colorAttributes['blue']->id(), 'attribute_size' => $this->sizeAttributes['medium']->id()],
-          ['attribute_color' => $this->colorAttributes['blue']->id(), 'attribute_size' => $this->sizeAttributes['large']->id()],
+          [
+            'attribute_color' => $this->colorAttributes['red']->id(),
+            'attribute_size' => $this->sizeAttributes['small']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['red']->id(),
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['red']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['small']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+            'attribute_size' => $this->sizeAttributes['small']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
         ],
       ],
       'My Sizes FIRST' => [
@@ -134,15 +159,42 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
       'My Colors and Sizes SECOND' => [
         'type' => 'color_sizes',
         'variations' => [
-          ['attribute_color' => $this->colorAttributes['red']->id(), 'attribute_size' => $this->sizeAttributes['small']->id()],
-          ['attribute_color' => $this->colorAttributes['red']->id(), 'attribute_size' => $this->sizeAttributes['medium']->id()],
-          ['attribute_color' => $this->colorAttributes['red']->id(), 'attribute_size' => $this->sizeAttributes['large']->id()],
-          ['attribute_color' => $this->colorAttributes['green']->id(), 'attribute_size' => $this->sizeAttributes['small']->id()],
-          ['attribute_color' => $this->colorAttributes['green']->id(), 'attribute_size' => $this->sizeAttributes['medium']->id()],
-          ['attribute_color' => $this->colorAttributes['green']->id(), 'attribute_size' => $this->sizeAttributes['large']->id()],
-          ['attribute_color' => $this->colorAttributes['blue']->id(), 'attribute_size' => $this->sizeAttributes['small']->id()],
-          ['attribute_color' => $this->colorAttributes['blue']->id(), 'attribute_size' => $this->sizeAttributes['medium']->id()],
-          ['attribute_color' => $this->colorAttributes['blue']->id(), 'attribute_size' => $this->sizeAttributes['large']->id()],
+          [
+            'attribute_color' => $this->colorAttributes['red']->id(),
+            'attribute_size' => $this->sizeAttributes['small']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['red']->id(),
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['red']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['small']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+            'attribute_size' => $this->sizeAttributes['small']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
         ],
       ],
       'My Sizes SECOND' => [
@@ -151,6 +203,24 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
           ['attribute_size' => $this->sizeAttributes['small']->id()],
           ['attribute_size' => $this->sizeAttributes['medium']->id()],
           ['attribute_size' => $this->sizeAttributes['large']->id()],
+        ],
+      ],
+      'Multiple variation types' => [
+        'type' => 'multiple',
+        'variations' => [
+          [
+            'type' => 'sizes',
+            'attribute_size' => $this->sizeAttributes['medium']->id(),
+          ],
+          [
+            'type' => 'color_sizes',
+            'attribute_color' => $this->colorAttributes['green']->id(),
+            'attribute_size' => $this->sizeAttributes['large']->id(),
+          ],
+          [
+            'type' => 'colors',
+            'attribute_color' => $this->colorAttributes['blue']->id(),
+          ],
         ],
       ],
     ];
@@ -193,13 +263,26 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
     $forms[1]->pressButton('Add to cart');
     $this->assertSession()->pageTextContains('My Colors and Sizes FIRST - Green, Medium added to your cart.');
 
+    $last_form = end($forms);
+    // Assert the title widget is used when a product references variations of
+    // a different type.
+    $this->assertTrue($last_form->hasField('Please select'));
+    $last_form->selectFieldOption('Please select', 'Multiple variation types - Blue');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $last_form->pressButton('Add to cart');
+    $this->assertSession()->pageTextContains('Multiple variation types - Blue added to your cart.');
+
     $this->container->get('entity_type.manager')->getStorage('commerce_order')->resetCache([$this->cart->id()]);
     $this->cart = Order::load($this->cart->id());
     $order_items = $this->cart->getItems();
+    $this->assertCount(2, $order_items);
     /** @var \Drupal\commerce_product\Entity\ProductVariationInterface $variation */
     $variation = $order_items[0]->getPurchasedEntity();
     $this->assertEquals($this->colorAttributes['green']->id(), $variation->getAttributeValueId('attribute_color'));
     $this->assertEquals($this->sizeAttributes['medium']->id(), $variation->getAttributeValueId('attribute_size'));
+
+    $variation = $order_items[1]->getPurchasedEntity();
+    $this->assertEquals($this->colorAttributes['blue']->id(), $variation->getAttributeValueId('attribute_color'));
   }
 
   /**
@@ -223,6 +306,7 @@ class MultipleCartMultipleVariationTypesTest extends CartWebDriverTestBase {
       'id' => $id,
       'label' => $label,
       'variationType' => $variation_type->id(),
+      'variationTypes' => [],
     ]);
     $product_type->save();
   }

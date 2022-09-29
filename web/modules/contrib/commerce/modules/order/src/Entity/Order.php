@@ -64,7 +64,8 @@ use Drupal\profile\Entity\ProfileInterface;
  *   admin_permission = "administer commerce_order",
  *   permission_granularity = "bundle",
  *   field_indexes = {
- *     "order_number"
+ *     "order_number",
+ *     "state"
  *   },
  *   entity_keys = {
  *     "id" = "order_id",
@@ -246,7 +247,7 @@ class Order extends CommerceContentEntityBase implements OrderInterface {
     }
     // Allow other modules to register their own profiles (e.g. shipping).
     $event = new OrderProfilesEvent($this, $profiles);
-    \Drupal::service('event_dispatcher')->dispatch(OrderEvents::ORDER_PROFILES, $event);
+    \Drupal::service('event_dispatcher')->dispatch($event, OrderEvents::ORDER_PROFILES);
     $profiles = $event->getProfiles();
 
     return $profiles;
@@ -547,7 +548,7 @@ class Order extends CommerceContentEntityBase implements OrderInterface {
     if (!$this->get('data')->isEmpty()) {
       $data = $this->get('data')->first()->getValue();
     }
-    return isset($data[$key]) ? $data[$key] : $default;
+    return $data[$key] ?? $default;
   }
 
   /**

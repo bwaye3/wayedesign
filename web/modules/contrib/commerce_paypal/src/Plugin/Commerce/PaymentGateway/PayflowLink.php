@@ -5,27 +5,18 @@ namespace Drupal\commerce_paypal\Plugin\Commerce\PaymentGateway;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_payment\Entity\PaymentInterface;
 use Drupal\commerce_payment\Exception\PaymentGatewayException;
-use Drupal\commerce_payment\PaymentMethodTypeManager;
-use Drupal\commerce_payment\PaymentTypeManager;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OffsitePaymentGatewayBase;
 use Drupal\commerce_paypal\Event\PayflowLinkRequestEvent;
 use Drupal\commerce_paypal\Event\PayPalEvents;
 use Drupal\commerce_price\Calculator;
 use Drupal\commerce_price\Price;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -95,61 +86,16 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
   protected $messenger;
 
   /**
-   * Constructs a new PayflowLink object.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\commerce_payment\PaymentTypeManager $payment_type_manager
-   *   The payment type manager.
-   * @param \Drupal\commerce_payment\PaymentMethodTypeManager $payment_method_type_manager
-   *   The payment method type manager.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_channel_factory
-   *   The logger channel factory.
-   * @param \GuzzleHttp\ClientInterface $client
-   *   The client.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   The module handler.
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-   *   The event dispatcher.
-   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
-   *   Messenger.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PaymentTypeManager $payment_type_manager, PaymentMethodTypeManager $payment_method_type_manager, TimeInterface $time, LoggerChannelFactoryInterface $logger_channel_factory, ClientInterface $client, ModuleHandlerInterface $module_handler, EventDispatcherInterface $event_dispatcher, MessengerInterface $messenger) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $payment_type_manager, $payment_method_type_manager, $time);
-
-    $this->logger = $logger_channel_factory->get('commerce_paypal');
-    $this->httpClient = $client;
-    $this->moduleHandler = $module_handler;
-    $this->eventDispatcher = $event_dispatcher;
-    $this->messenger = $messenger;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('plugin.manager.commerce_payment_type'),
-      $container->get('plugin.manager.commerce_payment_method_type'),
-      $container->get('datetime.time'),
-      $container->get('logger.factory'),
-      $container->get('http_client'),
-      $container->get('module_handler'),
-      $container->get('event_dispatcher'),
-      $container->get('messenger')
-    );
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->logger = $container->get('logger.channel.commerce_paypal');
+    $instance->httpClient = $container->get('http_client');
+    $instance->moduleHandler = $container->get('module_handler');
+    $instance->eventDispatcher = $container->get('event_dispatcher');
+    $instance->messenger = $container->get('messenger');
+    return $instance;
   }
 
   /**
@@ -162,7 +108,8 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
       'user' => '',
       'password' => '',
       'trxtype' => 'S',
-      'redirect_mode' => 'post',
+      'redirect_mode' => 'iframe',
+      'cancel_link' => TRUE,
       'reference_transactions' => FALSE,
       'emailcustomer' => FALSE,
       'log' => [
@@ -228,8 +175,19 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
       '#default_value' => $this->configuration['redirect_mode'],
       '#required' => TRUE,
       '#options' => [
+        'iframe' => $this->t('Stay on this site using an iframe to embed the hosted checkout page'),
         'post' => $this->t('Redirect to the hosted checkout page via POST through an automatically submitted form'),
         'get' => $this->t('Redirect to the hosted checkout page immediately with a GET request'),
+      ],
+    ];
+    $form['cancel_link'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Display a cancel link beneath the iframe of an embedded hosted checkout page.'),
+      '#default_value' => $this->configuration['cancel_link'],
+      '#states' => [
+        'visible' => [
+          ':input[name="configuration[paypal_payflow_link][redirect_mode]"]' => ['value' => 'iframe'],
+        ],
       ],
     ];
     $form['reference_transactions'] = [
@@ -312,7 +270,7 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
       $payment->save();
     }
     else {
-      throw new PaymentGatewayException($this->t('Refund failed: @reason', ['@reason' => $response['RESPMSG']]),  $response['RESULT']);
+      throw new PaymentGatewayException($this->t('Refund failed: @reason', ['@reason' => $response['RESPMSG']]), $response['RESULT']);
     }
   }
 
@@ -448,7 +406,7 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
         break;
 
       default:
-        throw new PaymentGatewayException($this->t('Capture failed: @reason.', ['@reason' => $response['RESPMSG']]),  $response['RESULT']);
+        throw new PaymentGatewayException($this->t('Capture failed: @reason.', ['@reason' => $response['RESPMSG']]), $response['RESULT']);
     }
 
     $payment->save();
@@ -471,9 +429,14 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
   public function onReturn(OrderInterface $order, Request $request) {
     /** @var \Symfony\Component\HttpFoundation\ParameterBag $parameter_bag */
     $parameter_bag = $request->request;
-    $received_parameters = $parameter_bag->all();
     $configuration = $this->getConfiguration();
 
+    if ($configuration['redirect_mode'] === 'iframe') {
+      $received_parameters = $order->getData('commerce_payflow')['received_parameters'];
+    }
+    else {
+      $received_parameters = $parameter_bag->all();
+    }
     $payment_storage = $this->entityTypeManager->getStorage('commerce_payment');
 
     if (!empty($configuration['silent_post_logging']) &&
@@ -572,7 +535,8 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
       'commerce_order' => $order->id(),
       'step' => 'payment',
     ], ['absolute' => TRUE])->toString();
-    $return_url = Url::fromRoute('commerce_payment.checkout.return', [
+    $return_route_name = $this->configuration['redirect_mode'] == 'iframe' ? 'commerce_paypal.checkout.payflowlink_iframe_return' : 'commerce_payment.checkout.return';
+    $return_url = Url::fromRoute($return_route_name, [
       'commerce_order' => $order->id(),
       'step' => 'payment',
     ], ['absolute' => TRUE])->toString();
@@ -595,7 +559,7 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
       'RETURNURL' => $return_url,
       'CANCELURL' => $cancel_url,
       'DISABLERECEIPT' => 'TRUE',
-      'TEMPLATE' => 'TEMPLATEA',
+      'TEMPLATE' => $this->configuration['redirect_mode'] == 'iframe' ? 'MINLAYOUT' : 'TEMPLATEA',
       'CSCREQUIRED' => 'TRUE',
       'CSCEDIT' => 'TRUE',
       'URLMETHOD' => 'POST',
@@ -681,7 +645,7 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
         break;
     }
 
-    if ($redirect_mode === 'get' && !empty($order)) {
+    if (in_array($redirect_mode, ['get', 'iframe']) && !empty($order)) {
       $commerce_payflow_data = $order->getData('commerce_payflow');
       if (empty($commerce_payflow_data['token']) || empty($commerce_payflow_data['tokenid'])) {
         return '';
@@ -741,7 +705,7 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
       $new_payment->save();
     }
     else {
-      throw new PaymentGatewayException($this->t('Reference transaction failed: @reason.', ['@reason' => $response['RESPMSG']]),  $response['RESULT']);
+      throw new PaymentGatewayException($this->t('Reference transaction failed: @reason.', ['@reason' => $response['RESPMSG']]), $response['RESULT']);
     }
   }
 
@@ -1134,6 +1098,13 @@ class PayflowLink extends OffsitePaymentGatewayBase implements PayflowLinkInterf
     }
 
     return TRUE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function createHostedCheckoutIframe(OrderInterface $order) {
+    return '<iframe src="' . $this->getRedirectUrl($order) . '" name="embedded-payflow-link" scrolling="no" frameborder="0" width="490px" height="565px"></iframe>';
   }
 
 }
