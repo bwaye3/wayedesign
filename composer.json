@@ -37,7 +37,7 @@
         "drupal/honeypot": "^2.0",
         "drupal/image_url_formatter": "^1.0@beta",
         "drupal/imce": "^2.2",
-        "drupal/ludwig": "^1.0",
+        "drupal/ludwig": "^2.0",
         "drupal/metatag": "^1.13",
         "drupal/paragraphs": "^1.11",
         "drupal/pathauto": "^1.8",
