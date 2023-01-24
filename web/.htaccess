@@ -78,6 +78,18 @@ AddEncoding gzip svgz
   # even when running as CGI or FastCGI.
   RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+    # Force image styles that have local files that exist to be generated.
+    RewriteCond %{REQUEST_URI} ^/sites/([^\/]*)/files/styles/[^\/]*/public/((.*))$
+    RewriteCond %{DOCUMENT_ROOT}/sites/%1/files/%2 -f
+    RewriteRule ^(.*)$ $1 [QSA,L]
+    # Otherwise, send anything else that's in the files directory to the production server.
+    RewriteCond %{REQUEST_URI} ^/sites/[^\/]*/files/.*$
+    RewriteCond %{REQUEST_URI} !^/sites/[^\/]*/files/css/.*$
+    RewriteCond %{REQUEST_URI} !^/sites/[^\/]*/files/js/.*$
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ https://www.wayedesigngroup.com/$1 [QSA,L]
+
   # Block access to "hidden" directories whose names begin with a period. This
   # includes directories used by version control systems such as Subversion or
   # Git to store control files. Files whose names begin with a period, as well

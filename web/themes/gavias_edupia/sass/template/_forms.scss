@@ -380,3 +380,32 @@ div.resizable-textarea {
     }
   }
 }
+
+
+.block-mailchimp-signup{
+  .form-item-mergevars-email{
+    margin-top: 20px;
+    label{
+      display: none!important;
+    }
+    input.form-email{
+      padding: 0 20px;
+      width: 100%;
+      background: #fff;
+      height: 40px;
+      border: 1px solid #dee2e6;
+      float: left;
+      margin-left: 0;
+    }
+  }
+  .form-actions{
+    margin-top: 15px;
+    float: left;
+    width: 100%;
+    input{
+      width: 100%;
+      border: none; 
+      border-radius: 0;
+    }
+  }
+}
