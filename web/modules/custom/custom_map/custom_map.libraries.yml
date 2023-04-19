@@ -1,0 +1,21 @@
+css_lib:
+  version: 1.x
+  css:
+    component:
+      css/custom.css: {}
+
+js_lib:
+  version: 1.x
+  js:
+    js/custom.js: {}
+  dependencies:
+    - core/jquery
+# Accordion.
+gt-accordion:
+  version: "1.0.x"
+  css:
+    base:
+      css/custom:css: { }
+  js:
+    //cdn.jsdelivr.net/npm/jquery-ui.accordion.multiple@1.0.1/lib/jquery-ui.accordion.multiple.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js: { type: external, minified: true }

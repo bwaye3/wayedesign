@@ -1,8 +1,0 @@
-customize:
-   version: VERSION
-   css:
-      theme:
-        assets/css/map.css: {}
-   js:
-      assets/js/map.js: {}
-   dependencies:

@@ -1,0 +1,7 @@
+name: Custom Map
+description: Provides a custom map block.
+type: module
+core_version_requirement: ^8.8.0 || ^9 || ^10
+dependencies:
+  - drupal:block
+  - drupal:config

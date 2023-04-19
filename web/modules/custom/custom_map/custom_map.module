@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ *
+ * We use hook_theme to define the templates used.
+ */
+function custom_map_theme($existing, $type, $theme, $path) {
+  return [
+    'custom_map' => [
+      'variables' => [
+        'text' => '',
+      ],
+    ],
+  ];
+}
